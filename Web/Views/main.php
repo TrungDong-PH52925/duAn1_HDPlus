@@ -35,6 +35,14 @@
     <section class="phone ">
         <div class="phone--container  ">
             <h1 class="phone--title animate__animated animate__bounceInLeft">SẢN PHẨM BÁN CHẠY</h1>
+            <?php 
+            $sp = new sanPham();
+            $listsp = $sp->loadAll_sanpham();
+            foreach ($listsp as $sp) {
+           extract($sp);
+           
+            }
+            ?>
             <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
                 <div class="col-6 col-lg phone--card ">
                     <a href="./html/product.html" class="phone--produce">
