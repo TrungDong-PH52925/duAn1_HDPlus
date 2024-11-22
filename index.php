@@ -4,6 +4,7 @@ ob_start();
 session_start();
 require_once 'Web/Config/dbconnect.php';
 require "Web/Controllers/C_Account.php";
+
 include "Web/Controllers/C_danhMuc.php";
 include "Web/Controllers/C_sanPham.php";
 include "Web/Controllers/C_Banner.php";
@@ -27,6 +28,9 @@ if(isset($_GET['act'])&&($_GET['act'])!=""){
             break;
         case 'dangky':
            $AllProduct->handleRegister();
+            break;
+        case 'admin':
+            include_once "Web/Views/Admin/adminIndex.php";
             break;
         // DANH MỤC
 

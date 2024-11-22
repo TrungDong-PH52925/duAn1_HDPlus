@@ -2,10 +2,16 @@
 /**
  * Mở kết nối đến CSDL sử dụng PDO
  */
+try {
+    $conn = pdo_get_connection();
+    // echo "Kết nối cơ sở dữ liệu thành công!";
+} catch (PDOException $e) {
+    echo "Lỗi kết nối cơ sở dữ liệu: " . $e->getMessage();
+}
 function pdo_get_connection(){
     $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8";
     $username = 'root';
-    $password = ''; 
+    $password = '';
 
     $conn = new PDO($dburl, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -38,19 +44,24 @@ function pdo_execute($sql){
  * @return array mảng các bản ghi
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_query($sql){
+function pdo_query($sql) {
     $sql_args = array_slice(func_get_args(), 1);
-    try{
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
+        
+        // Nếu có tham số, sử dụng mảng các tham số để thực thi
+        if (count($sql_args) > 0) {
+            $stmt->execute($sql_args[0]);  // Tham số đầu tiên là mảng tham số
+        } else {
+            $stmt->execute();
+        }
+
         $rows = $stmt->fetchAll();
         return $rows;
-    }
-    catch(PDOException $e){
+    } catch (PDOException $e) {
         throw $e;
-    }
-    finally{
+    } finally {
         unset($conn);
     }
 }

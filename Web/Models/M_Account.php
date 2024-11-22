@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__ . '/../Config/dbconnect.php');
 function check_user($account_user, $pass_user) {
     $sql = "SELECT * FROM user WHERE account_user = :account_user AND pass_user = :pass_user";
 

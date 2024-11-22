@@ -1,12 +1,27 @@
 <div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <!-- <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="..."> -->
+   
+        <?php          $bn = new Banner();
+        $listbanner = $bn->getAll_Banner(); 
+         foreach($listbanner as $banner) {
+        extract($banner);
+        $imgpath = "./public/upload/" .$img_banner;
+        if(is_file($imgpath)){
+            $hinh = "<img src='".$imgpath."' class='d-block w-100' alt='...'>";
+
+            
+        }else{
+            $hinh = "no photo";
+        } 
+        echo '<div class="carousel-item active">
+                    <img src="'.$imgpath.'" class="d-block w-100" alt="...">
+                </div>' ;}
+        ?>
+        
+                <!-- <div class="carousel-item active">
                     <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="./public/img/home/deal-dac-biet-thang-5-mobile.jpg" class="d-block w-100" alt="...">
-                </div>
+               
                 <div class="carousel-item">
                     <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
                 </div>
@@ -18,7 +33,7 @@
                 </div>
                 <div class="carousel-item">
                     <img src="./public/img/home/spark-20-pro-plus-640x266.png" class="d-block w-100" alt="...">
-                </div>
+                </div> -->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">

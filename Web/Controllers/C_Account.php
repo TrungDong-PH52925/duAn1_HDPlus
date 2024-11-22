@@ -1,5 +1,5 @@
 <?php
-// require "Web/Models/M_Account.php";
+require "Web/Models/M_Account.php";
 class C_Account
 {
     public function handleLogin()
@@ -9,7 +9,7 @@ class C_Account
             // Kiểm tra nếu tài khoản hoặc mật khẩu trống
             if (empty($_POST['account_user']) || empty($_POST['pass_user'])) {
                 $_SESSION['error'] = "Vui lòng nhập tài khoản và mật khẩu.";
-                header('Location: ../../../../duAn1_HDPlus/Web/Views/Login/login.php');
+                header('Location: ../../../duAn1_HDPlus/Web/Views/Login/login.php');
                 exit;
             }
 
@@ -24,7 +24,7 @@ class C_Account
 
                 if ($role == 1) {  // Nếu là quản trị viên
                     $_SESSION['role'] = $role;
-                    header('Location: Web/Views/Admin/adminIndex.php');
+                    header('Location: index.php?act=admin');
                     exit;
                 } else {  // Nếu là người dùng bình thường
                     $_SESSION['role'] = $role;

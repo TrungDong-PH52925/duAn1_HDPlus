@@ -64,7 +64,7 @@ if (isset($_SESSION['error'])) {
         </nav> -->
 
         <!-- Menu lựa chọn các sản phẩm -->
-        <!-- <nav class="menu--bottom">
+         <!-- <nav class="menu--bottom">
             <ul class="menu--choose">
                 <li class="item"><a href="html/iphone.html">
                         <div class="img">
@@ -116,82 +116,82 @@ if (isset($_SESSION['error'])) {
                     <label for="nav--list__check">Đóng</label>
                 </div>
             </ul>
-        </div> -->
+            </div> -->
     </header>
 
-        <div class="container">
+<div class="container">
 
-            <div class="login-form">
-            <div class="login-bg">
-                <img src="../../../public/img/img_login/login-bg.png">
+    <div class="login-form">
+    <div class="login-bg">
+        <img src="../../../public/img/img_login/login-bg.png">
+    </div>
+
+    <div class="form">
+
+        <div class="center" style="text-align:center;">
+            <h2>Đăng ký tài khoản</h2>
+            <p>Chú ý các nội dung có dấu * bạn cần phải nhập</p>
+
+        </div>
+
+        <div id="registerForm" class="hh-form">
+            <form method="post" action="../../../index.php?act=dangky" enctype="multipart/form-data">
+
+                <div class="form-controls">
+                    <label for="ten_user">Tên người dùng:</label>
+                    <div class="controls">
+                        <input type="text" id="ten_user" name="ten_user" >
+                        <br>
+                    </div>
+                </div>
+
+
+                <div class="form-controls">
+                    <label for="sdt_user">Số điện thoại:</label>
+                    <div class="controls">
+                        <input type="text" id="sdt_user" name="sdt_user" ><br>
+                    </div>
+                </div>
+
+
+                <div class="form-controls">
+                    <label for="gmail_user">Email:</label>
+                    <div class="controls">
+                        <input type="email" id="gmail_user" name="gmail_user" ><br>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="form-controls">
+            <label for="account_user">Tài khoản:</label>
+            <div class="controls">
+                <input type="text" id="account_user" name="account_user" ><br>
             </div>
+        </div>
 
-            <div class="form">
+        <div class="form-controls">
+            <label for="pass_user">Mật khẩu:</label>
+            <div class="controls">
+                <input type="password" id="pass_user" name="pass_user" ><br>
+            </div>
+        </div>
 
-                <div class="center" style="text-align:center;">
-                    <h2>Đăng ký tài khoản</h2>
-                    <p>Chú ý các nội dung có dấu * bạn cần phải nhập</p>
+        <div class="form-controls">
+            <label for="address_user">Địa chỉ:</label>
+            <div class="controls">
+                <input type="text" id="address_user" name="address_user" ><br>
+            </div>
+        </div>
+        <div class="form-controls">
+            <label for="img_user">Ảnh đại diện:</label>
+            <div class="controls">
+                <input type="file" id="img_user" name="img_user" accept="image/*"><br>
+            </div>
+        </div>
 
-                </div>
-
-                <div id="registerForm" class="hh-form">
-                    <form method="post" action="../../../index.php?act=dangky" enctype="multipart/form-data">
-
-                        <div class="form-controls">
-                            <label for="ten_user">Tên người dùng:</label>
-                            <div class="controls">
-                                <input type="text" id="ten_user" name="ten_user" >
-                                <br>
-                            </div>
-                        </div>
-
-
-                        <div class="form-controls">
-                            <label for="sdt_user">Số điện thoại:</label>
-                            <div class="controls">
-                                <input type="text" id="sdt_user" name="sdt_user" ><br>
-                            </div>
-                        </div>
-
-
-                        <div class="form-controls">
-                            <label for="gmail_user">Email:</label>
-                            <div class="controls">
-                                <input type="email" id="gmail_user" name="gmail_user" ><br>
-                            </div>
-                        </div>
-                </div>
-
-
-                <div class="form-controls">
-                    <label for="account_user">Tài khoản:</label>
-                    <div class="controls">
-                        <input type="text" id="account_user" name="account_user" ><br>
-                    </div>
-                </div>
-
-                <div class="form-controls">
-                    <label for="pass_user">Mật khẩu:</label>
-                    <div class="controls">
-                        <input type="password" id="pass_user" name="pass_user" ><br>
-                    </div>
-                </div>
-
-                <div class="form-controls">
-                    <label for="address_user">Địa chỉ:</label>
-                    <div class="controls">
-                        <input type="text" id="address_user" name="address_user" ><br>
-                    </div>
-                </div>
-                <div class="form-controls">
-                    <label for="img_user">Ảnh đại diện:</label>
-                    <div class="controls">
-                        <input type="file" id="img_user" name="img_user" accept="image/*"><br>
-                    </div>
-                </div>
-
-                <div class="form-controls">
-                    <div class="controls submit-controls">
+        <div class="form-controls">
+        <div class="controls submit-controls">
                         <button type="submit"  name="dangky">ĐĂNG KÝ TÀI KHOẢN</button>
                     </div>
                 </div>
@@ -249,7 +249,7 @@ if (isset($_SESSION['error'])) {
                                 <div class="img">
                                     <img src="../img/home/logo-samsungpay.png" alt="">
                                 </div>
-                            </div>
+                                </div>
                         </li>
                         <li class="pay">
                             <div class="logo--pay">
