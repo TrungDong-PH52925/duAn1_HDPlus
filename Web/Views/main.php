@@ -548,7 +548,7 @@
                                     <label class="star star-4" for="star-4"></label>
                                     <input class="star star-3" id="star-3" type="radio" name="star" />
                                     <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
+                                    <input class=" star star-2" id="star-2" type="radio" name="star" />
                                     <label class="star star-2" for="star-2"></label>
                                     <input class="star star-1" id="star-1" type="radio" name="star" />
                                     <label class="star star-1" for="star-1"></label>
@@ -644,7 +644,7 @@
             <div class="customer--list">
                 <div class="customer--list__item">
                     <div class="img">
-                        <img src="./public/img/a.jpg" alt="">
+                        <img src="#" alt="">
                     </div>
                     <div class="customer--text">
                         <h2>Đỗ Quang Huy</h2>
@@ -658,7 +658,7 @@
                 </div>
                 <div class="customer--list__item">
                     <div class="img">
-                        <img src="./public/img/home/user2.jpg" alt="">
+                        <img src="#" alt="">
                     </div>
                     <div class="customer--text">
                         <h2>Nguyễn Minh Thuận</h2>
@@ -675,7 +675,7 @@
                 </div>
                 <div class="customer--list__item">
                     <div class="img">
-                        <img src="./public/img/home/user3.jpg" alt="">
+                        <img src="#" alt="">
                     </div>
                     <div class="customer--text">
                         <h2>Nguyễn Thị Ánh</h2>
@@ -692,7 +692,7 @@
                 </div>
                 <div class="customer--list__item">
                     <div class="img">
-                        <img src="./public/img/home/user4.jpg" alt="">
+                        <img src="#" alt="">
                     </div>
                     <div class="customer--text">
                         <h2>Nguyễn Thành Nam</h2>

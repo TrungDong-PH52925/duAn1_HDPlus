@@ -1,26 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table border="1px">
+<?php include_once "./Web/Views/Admin/adminHeader.php" ?>
+<main id="main" class="main">
+  <div class="container mt-4" >
+    <h2 class="mb-4">Danh Sách Banner</h2>
+
+    <!-- Nút Thêm Banner -->
+    <a href="index.php?act=addbn" class="btn btn-success mb-3">Thêm Banner</a>
+
+    <!-- Bảng Banner -->
+    <table class="table table-bordered " >
+      <thead>
         <tr>
-            <td>id</td>
-            <td>ten danh muc</td>
-            <td>img</td>
+          <th scope="col">ID</th>
+          <th scope="col">Tên Banner</th>
+          <th scope="col">Ảnh Banner</th>
+          <th scope="col">Hành Động</th>
         </tr>
-        <?php foreach ($getdm as $key => $value) {
-            ?>
-            <tr>
-            <td><?php echo $value->id_danhmuc?></td>
-            <td><?php echo $value->ten_danhmuc?></td>
-            <td><img src="<?php echo $value->img_danhmuc?>"></td>
+      </thead>
+     
+      <tbody>
+        <?php
+        
+        $bn = new Banner();
+        $listbanner = $bn->getAll_Banner(); 
+         foreach($listbanner as $banner) {
+        extract($banner);
+        $updatebn = "index.php?act=updatebn&id=".$id_banner;
+        $deletebn = "index.php?act=deletebn&id=".$id_banner;
+        $imgpath = "./public/upload/" .$img_banner;
+        if(is_file($imgpath)){
+            $hinh = "<img src= '".$imgpath."'  height='50px' width='100px'>";
+        }else{
+            $hinh = "no photo";
+        }
+        echo '
+        <tr>
+            <td>'.$id_banner.'</td>
+            <td>'.$name_banner.'</td>
+            <td><img src="'.$imgpath.'" alt="Hình ảnh" class="img-fluid"  height="50px" width="100px" ></td>
+            <td>
+                <a href="'.$updatebn.'" class="btn btn-warning btn-sm">Sửa</a>
+                <a href="'.$deletebn.'" class="btn btn-danger btn-sm" onclick="return confirm(\'Bạn có chắc chắn muốn xóa?\')">Xóa</a>
+            </td>
         </tr>
-     <?php   }?>
-       
+        ';
+        }
+        ?>
+      
+      </tbody>
     </table>
-</body>
-</html>
+  </div>
+</main>
+  <?php include_once "./Web/Views/Admin/adminFooter.php" ?>
+

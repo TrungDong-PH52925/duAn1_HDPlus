@@ -1,22 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="row">
-        <input type="text" name="ma_dm" id="" disabled>
-        </div>
-        <div class="row">
-        <input type="text" name="ten_dm" id="">
-        </div>
-        <div class="row">
-        <input type="file" name="img_dm" id="">
-        </div>
-        <input type="submit" value="themoi" name="btn_add">
+<?php include_once "./Web/Views/Admin/adminHeader.php" ?>
+<main id="main" class="main">
+  <div class="container mt-10" >
+    <h2 class="mb-4">Thêm Banner</h2>
+
+    <!-- Form Thêm Banner -->
+    <form action="index.php?act=addbn" method="post" enctype="multipart/form-data">
+      
+      <!-- Tên Banner -->
+      <div class="mb-3">
+        <label for="bannerName" class="form-label">Tên Banner</label>
+        <input type="text" class="form-control" id="bannerName" name="name_banner" required placeholder="Nhập tên Banner">
+      </div>
+
+      <!-- Ảnh Banner -->
+      <div class="mb-3">
+        <label for="bannerImage" class="form-label">Ảnh Banner</label>
+        <input type="file" class="form-control" id="bannerImage" name="img_banner"  required>
+        <?php if (isset($_FILES['img_banner']) && $_FILES['img_banner']['error'] == 0) {
+        $img_banner = $_FILES['img_banner']['name'];
+    
+    } else {
+    // echo "Lỗi khi tải ảnh lên!";
+    } ?>
+      </div>
+
+      <!-- Nút Gửi -->
+      <button type="submit" class="btn btn-success" name="thembn">Thêm Banner</button>
+      <button type="reset" class="btn btn-success" >Nhập lại</button>
+      <a href="index.php?act=listbn" class="btn btn-secondary ml-3">Danh sách Banner</a>
     </form>
-</body>
-</html>
+  </div>
+</main>
+  <?php include_once "./Web/Views/Admin/adminFooter.php" ?>

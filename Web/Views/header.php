@@ -31,15 +31,23 @@
             - Trợ giá tốt nhất</h2>
         <div class="nav--infomation ">
             <ul class="nav--infomation__top">
-                <li class="items"><a href="index.php">Trang chủ</a></li>
+                <li class="items"><a href="http://localhost/duAn1_HDPlus/index.php">Trang chủ</a></li>
                 <li class="items"><a href="./html/introduce.html">Giới thiệu</a></li>
                 <li class="items"><a href="./html/watched.html">Sản phẩm đã xem</a></li>
                 <li class="items"><a href="./html/guaranteed.html">Trung tâm bảo hành</a></li>
-                <li class="items"><a href="#0">Hệ thông 128 siêu thị</a></li>
+                <!-- <li class="items"><a href="#0">Hệ thông 128 siêu thị</a></li> -->
                 <li class="items"><a href="./html/recruitment.html">Tuyển dụng</a></li>
                 <li class="items"><a href="./html/tracuu.html">Tra cứu</a></li>
-                <!-- <li class="items"><a href="./html/login.html">Đăng Nhâp</a></li> -->
-                <li class="items"><a href="../index.php?act=login">Đăng Nhâp</a></li>
+                <?php
+                if (isset($_SESSION['username']) && ($_SESSION['username'] != "")) {
+                    echo '<li class="items"><a href="index.php?act=userinfo">' . $_SESSION['username'] . '</a></li>';
+                } else {
+                ?>
+                    <li class="items"><a href="../../../duAn1_HDPlus/Web/Views/Login/login.php">Đăng Nhâp</a></li>
+                <?php } ?>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li class="items"><a href="index.php?act=logout">Đăng xuất</a></li>
+                <?php endif; ?>
 
             </ul>
         </div>
