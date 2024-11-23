@@ -21,6 +21,23 @@ if(is_array($upone)){
         <input type="hidden" class="form-control" id="categoryName" name="id_sanpham" required value="<?=$id_sanpham?>">
       </div> 
       <div class="mb-3">
+        <label for="categoryName" class="form-label">Id danh muc</label>
+       <select class="form-control" id="categogyId" required name="id_danhmuc">
+        <option value="">Chon danh muc</option>
+        <?php
+        
+       $dm = new danhMuc();
+       $listdanhmuc = $dm->getAll_danhMuc();
+        
+        foreach ($listdanhmuc as $dm) {
+          extract($dm);
+          if($id_danhmuc==$id_danhmuc)
+         echo "<option value='".$id_danhmuc."' selected>$ten_danhmuc</option>";
+       }
+        ?>
+       </select>
+      </div>
+      <div class="mb-3">
         <label for="categoryName" class="form-label">Ten san pham</label>
         <input type="text" class="form-control" id="categoryName" name="ten_sanpham" required value="<?=$ten_sanpham?>">
        

@@ -22,7 +22,8 @@ if(isset($_POST['them'])&&($_POST['them'])){
    $giamgia_sanpham=$_POST['giamgia_sanpham'];
    $quantity_sanpham=$_POST['quantity_sanpham'];
    $mota_sanpham=$_POST['mota_sanpham'];
-$them = $this->sp->insert_sanpham($ten_sanpham, $target_file, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,null);
+   $id_danhmuc=$_POST['id_danhmuc'];
+$them = $this->sp->insert_sanpham($ten_sanpham, $target_file, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,$id_danhmuc);
 if($them){
 echo"Them thanh cong";
 header("location: index.php?act=listsp");
@@ -34,14 +35,22 @@ header("location: index.php?act=listsp");
 }
 include './Web/Views/Admin/product/add.php';
    }
+   
+
 // list
 public function listsanPham(){
 $this->sp->loadAll_sanpham();
 include './Web/Views/Admin/product/list.php';
 }
+// thu
+// public function listsp_home(){
+   
+//    $spnew = $this->sp->loadAll_sanpham_home();
+//    include './Web/Views/Client/home.php';
+// }
 // Edit
 public function loadonesanPham(){
-echo 123;
+
 if(isset($_GET['id'])&&($_GET['id']) >0){
    
  $upone =  $this-> sp -> loadone_sanpham($_GET['id']);
@@ -69,9 +78,9 @@ if(isset($_POST['capnhat'])&&($_POST['capnhat'])){
     $giamgia_sanpham=$_POST['giamgia_sanpham'];
     $quantity_sanpham=$_POST['quantity_sanpham'];
     $mota_sanpham=$_POST['mota_sanpham'];
-    
+    $id_danhmuc=$_POST['id_danhmuc'];
 
-$update = $this->sp-> update_sanpham($id_sanpham,$ten_sanpham, $target_file, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,null);
+$update = $this->sp-> update_sanpham($id_sanpham,$ten_sanpham, $target_file, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,$id_danhmuc);
 
        if(!$update){
       

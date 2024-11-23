@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- add thư viện -->
-    <link rel="stylesheet" href="./public/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../../../public/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="NEW_SHA-384_HASH_HERE" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -39,20 +39,20 @@
                 <li class="items"><a href="./html/recruitment.html">Tuyển dụng</a></li>
                 <li class="items"><a href="./html/tracuu.html">Tra cứu</a></li>
                 <!-- <li class="items"><a href="./html/login.html">Đăng Nhâp</a></li> -->
-                <li class="items"><a href="../index.php?act=login">Đăng Nhâp</a></li>
+                <li class="items"><a href="../../../../duAn1_HDPlus/Web/Views/Login/login.php">Đăng Nhâp</a></li>
 
             </ul>
         </div>
 
         <nav class="menu--desktop">
             <div class="logo">
-                <img src="./public/img/logo.jpg" alt="logo">
+                <img src="public/img/logo.jpg" alt="logo">
             </div>
             <div class="menu--search">
                 <input type="text" placeholder="Search...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <a class="menu--check__product " href="./html/checkoder.html" style="text-decoration: none; color: black;">
+            <a class="menu--check__product " href="../html/checkoder.html" style="text-decoration: none; color: black;">
                 <i class="fa-solid fa-car"></i>
                 Kiểm tra đơn hàng
             </a>
@@ -70,33 +70,33 @@
         <nav class="menu--bottom">
             <ul class="menu--choose">
 
-                <li class="item"><a href="./html/iphone.html">
+                <li class="item"><a href="html/iphone.html">
                         <div class="img">
                             <i class="fa-brands fa-apple"></i>
                             iPhone
                         </div>
                     </a></li>
                 <li class="item"><a href="./html/samsung.html">
-                        <div class="img"><img src="./public/img/home/hd_mainmenu_icon3.webp" alt="SAMSUNG"> SAMSUNG
+                        <div class="img"><img src="public/img/home/hd_mainmenu_icon3.webp" alt="SAMSUNG"> SAMSUNG
                         </div>
 
                     </a></li>
                 <li class="item"><a href="../web bán Điện Thoại/html/googlePixel.html">
-                        <div class="img"><img src="./public/img/home/hd_mainmenu_icon4.webp" alt="google">GOOGLE</div>
+                        <div class="img"><img src="public/img/home/hd_mainmenu_icon4.webp" alt="google">GOOGLE</div>
 
                     </a></li>
                 <li class="item"><a href="./html/sony.html">
-                        <div class="img"><img src="./public/img/home/hd_mainmenu_icon5.webp" alt="sony"> SONY</div>
+                        <div class="img"><img src="public/img/home/hd_mainmenu_icon5.webp" alt="sony"> SONY</div>
 
                     </a></li>
                 </a></li>
                 <li class="item"><a href="./html/xiaomi.html">
-                        <div class="img"><img src="./public/img/home/hd_mainmenu_icon6.webp" alt="xiaomi"> XIAOMI</div>
+                        <div class="img"><img src="public/img/home/hd_mainmenu_icon6.webp" alt="xiaomi"> XIAOMI</div>
 
                     </a></li>
                 </a></li>
                 <li class="item"><a href="./html/news.html">
-                        <div class="img"><img src="./public/img/home/hd_mainmenu_icon10.webp" alt="tin tuc">TIN TỨC
+                        <div class="img"><img src="public/img/home/hd_mainmenu_icon10.webp" alt="tin tuc">TIN TỨC
                         </div>
 
                     </a></li>

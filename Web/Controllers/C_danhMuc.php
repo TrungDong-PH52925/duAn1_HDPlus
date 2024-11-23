@@ -35,7 +35,10 @@ require_once "./Web/Models/M_danhMuc.php";
         include './Web/Views/Admin/danhmuc/list.php';
         
     }
-
+public function listdanhMuc_sanPham(){
+    $this->dm->getAll_danhMuc();
+    include './Web/Views/Admin/product/add.php';
+}
     public function loadoneDanhMuc(){
         if(isset($_GET['id']) && ($_GET['id']) > 0){          
             

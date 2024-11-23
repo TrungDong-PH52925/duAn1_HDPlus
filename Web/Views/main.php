@@ -1,8 +1,11 @@
+<?php
+require_once 'Web/Models/M_sanPham.php';
+?>
 <div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <!-- <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="..."> -->
-                    <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
+                    <img src="public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="./public/img/home/deal-dac-biet-thang-5-mobile.jpg" class="d-block w-100" alt="...">
@@ -35,15 +38,38 @@
     <section class="phone ">
         <div class="phone--container  ">
             <h1 class="phone--title animate__animated animate__bounceInLeft">SẢN PHẨM BÁN CHẠY</h1>
-            <?php 
-            $sp = new sanPham();
-            $listsp = $sp->loadAll_sanpham();
-            foreach ($listsp as $sp) {
-           extract($sp);
-           
+           <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
+            <?php
+           $listsp= new sanPham();
+           $spnew=$listsp->loadAll_sanpham_home();
+            foreach ($spnew as $list) {
+           extract($list);
+           echo 
+           '<div class="col-6 col-lg-3 col-md-4 d-flex justify-content-center mb-4">
+            <div class="card h-100 text-center" style="width: 18rem;">
+           <div class="img">
+                            <img src="'.$img_sanpham.'" alt="" width="200px" height="200px" >
+            </div>
+                
+                <h3 class="card-title">'.$ten_sanpham.'</h3>
+                
+                <span class="text-success">Gia: '.$gia_sanpham.' VND</span>
+                <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
+               
+                
+                <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
+                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
+                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
+                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
+                <input type="submit" name="addtocart" value="Them vao gio hang">
+                </form>
+                   </div>     
+           </div>';
             }
             ?>
-            <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
+              </div>
+            <!-- <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
                 <div class="col-6 col-lg phone--card ">
                     <a href="./html/product.html" class="phone--produce">
                         <div class="img">
@@ -183,7 +209,7 @@
 
 
             </div>
-        </div>
+        </div> -->
 
     </section>
     <!-- END SẢM PHẬP BÁN CHẠY -->
@@ -196,145 +222,38 @@
         <div class="phone--container  ">
             <h1 class="phone--title">SẢN PHẨM APPLE</h1>
             <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
-
+            <?php
+           $listsp= new sanPham();
+           $id_danhmuc=9;
+           $sp_iddanhmuc=$listsp->loadsanPham_danhmuc($id_danhmuc);
+            foreach ($sp_iddanhmuc as $list) {
+           extract($list);
+           echo 
+           '<div class="col-6 col-lg-3 col-md-4 d-flex justify-content-center mb-4">
+            <div class="card h-100 text-center" style="width: 18rem;">
+           <div class="img">
+                            <img src="'.$img_sanpham.'" alt="" width="200px" height="200px" >
+            </div>
+                
+                <h3 class="card-title">'.$ten_sanpham.'</h3>
+                
+                <span class="text-success">Gia: '.$gia_sanpham.' VND</span>
+                <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
+               
+                
+                <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
+                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
+                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
+                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
+                <input type="submit" name="addtocart" value="Them vao gio hang">
+                </form>
+                   </div>     
+           </div>';
+            }
+            ?>
+            </div>
+               
             </div>
         </div>
         <div class="btn--phone">
@@ -348,144 +267,37 @@
         <div class="phone--container  ">
             <h1 class="phone--title">SẢN PHẨM XIAOMI</h1>
             <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
+            
+            <?php
+           $listsp= new sanPham();
+           $id_danhmuc=12;
+           $sp_iddanhmuc=$listsp->loadsanPham_danhmuc($id_danhmuc);
+            foreach ($sp_iddanhmuc as $list) {
+           extract($list);
+           echo 
+           '<div class="col-6 col-lg-3 col-md-4 d-flex justify-content-center mb-4">
+            <div class="card h-100 text-center" style="width: 18rem;">
+           <div class="img">
+                            <img src="'.$img_sanpham.'" alt="" width="200px" height="200px" >
+            </div>
+                
+                <h3 class="card-title">'.$ten_sanpham.'</h3>
+                
+                <span class="text-success">Gia: '.$gia_sanpham.' VND</span>
+                <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
+               
+                
+                <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
+                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
+                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
+                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
+                <input type="submit" name="addtocart" value="Them vao gio hang">
+                </form>
+                   </div>     
+           </div>';
+            }
+            ?>
 
             </div>
         </div>
@@ -500,145 +312,36 @@
         <div class="phone--container  ">
             <h1 class="phone--title">SẢN PHẨM SAMSUNG</h1>
             <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-                <div class="col-6 col-lg phone--card ">
-                    <a href="./html/product.html" class="phone--produce">
-                        <div class="img">
-                            <img src="./public/img/home/hinh_iphone-13-pro-max-vang.webp" alt="">
-                        </div>
-                        <div class="phone--produce__text">
-
-                            <h2>iPhone 13 Pro Max Chính Hãng VN/A</h2>
-                            <div class="Memory">
-                                <span>64GB</span>
-                                <span>128GB</span>
-                                <span>512GB</span>
-                            </div>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" checked />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
-                                <span>(2 Đánh Giá)</span>
-                            </div>
-
-                            <p>20.000.00 <span>₫</span></p>
-                        </div>
-
-                    </a>
-                </div>
-
-
+            <?php
+           $listsp= new sanPham();
+           $id_danhmuc=10;
+           $sp_iddanhmuc=$listsp->loadsanPham_danhmuc($id_danhmuc);
+            foreach ($sp_iddanhmuc as $list) {
+           extract($list);
+           echo 
+           '<div class="col-6 col-lg-3 col-md-4 d-flex justify-content-center mb-4">
+            <div class="card h-100 text-center" style="width: 18rem;">
+           <div class="img">
+                            <img src="'.$img_sanpham.'" alt="" width="200px" height="200px" >
+            </div>
+                
+                <h3 class="card-title">'.$ten_sanpham.'</h3>
+                
+                <span class="text-success">Gia: '.$gia_sanpham.' VND</span>
+                <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
+               
+                
+                <form action="index.php?act=addtocart" method="post">
+                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
+                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
+                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
+                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
+                <input type="submit" name="addtocart" value="Them vao gio hang">
+                </form>
+                   </div>     
+           </div>';
+            }
+            ?>
             </div>
         </div>
         <div class="btn--phone">
