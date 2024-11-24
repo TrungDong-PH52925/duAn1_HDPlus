@@ -4,7 +4,7 @@
 if(is_array($upone)){
 
   extract($upone);
-       var_dump($upone);
+      //  var_dump($upone);
 }
 
 
@@ -31,8 +31,10 @@ if(is_array($upone)){
         
         foreach ($listdanhmuc as $dm) {
           extract($dm);
-          if($id_danhmuc==$id_danhmuc)
-         echo "<option value='".$id_danhmuc."' selected>$ten_danhmuc</option>";
+          // if($id_danhmuc==$id_danhmuc)
+          $select=($id_danhmuc == $upone['id_danhmuc']) ?'selected':'';
+        //  if($id_danhmuc == $upone['id_danhmuc'])
+         echo "<option value='".$id_danhmuc."'$select>$ten_danhmuc</option>";
        }
         ?>
        </select>
@@ -46,8 +48,8 @@ if(is_array($upone)){
       <!-- Ảnh Danh Mục -->
       <div class="mb-3">
         <label for="categoryImage" class="form-label">Ảnh san pham</label>
-        <input type="file" class="form-control" id="categoryImage" name="img_sanpham" required  >
-       <img src="<?=$img_sanpham?>">
+        <input type="file"  class="form-control" id="categoryImage" name="img_sanpham" required  >
+       <img src="<?=$img_sanpham?>" style width="200px" height="200px">
         
       </div>
       <div class="mb-3">

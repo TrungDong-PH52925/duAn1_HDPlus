@@ -37,7 +37,7 @@ require_once 'Web/Models/M_sanPham.php';
     </header>
     <section class="phone ">
         <div class="phone--container  ">
-            <h1 class="phone--title animate__animated animate__bounceInLeft">SẢN PHẨM BÁN CHẠY</h1>
+            <h1 class="phone--title animate__animated animate__bounceInLeft">SẢN PHẨM </h1>
            <div class="row  g-3 wow " data-wow-offset="100" data- wow-iteration="100">
             <?php
            $listsp= new sanPham();
@@ -54,16 +54,16 @@ require_once 'Web/Models/M_sanPham.php';
                 <h3 class="card-title">'.$ten_sanpham.'</h3>
                 
                 <span class="text-success">Gia: '.$gia_sanpham.' VND</span>
-                <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
+                <span class="text-danger "> '.$giamgia_sanpham.' VND</span>
                
                 
-                <form action="index.php?act=addtocart" method="post">
-                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
-                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
-                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
-                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
-                <input type="submit" name="addtocart" value="Them vao gio hang">
-                </form>
+                 <form action="index.php?act=addtocart" method="post">
+                 <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
+                 <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
+                 <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
+                  <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
+             
+                 </form>
                    </div>     
            </div>';
             }
@@ -246,7 +246,7 @@ require_once 'Web/Models/M_sanPham.php';
                 <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
                 <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
                  <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
-                <input type="submit" name="addtocart" value="Them vao gio hang">
+               
                 </form>
                    </div>     
            </div>';
@@ -287,13 +287,7 @@ require_once 'Web/Models/M_sanPham.php';
                 <span class="text-danger ">Giam: '.$giamgia_sanpham.' VND</span>
                
                 
-                <form action="index.php?act=addtocart" method="post">
-                <input type="hidden" name="id_sanpham" value="'.$id_sanpham.'">
-                <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
-                <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
-                 <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
-                <input type="submit" name="addtocart" value="Them vao gio hang">
-                </form>
+                
                    </div>     
            </div>';
             }
@@ -336,7 +330,7 @@ require_once 'Web/Models/M_sanPham.php';
                 <input type="hidden" name="ten_sanpham" value="'.$ten_sanpham.'">
                 <input type="hidden" name="giamgia_sanpham" value="'.$giamgia_sanpham.'">
                  <input type="hidden" name="quantity_sanpham" value="'.$quantity_sanpham.'">
-                <input type="submit" name="addtocart" value="Them vao gio hang">
+      
                 </form>
                    </div>     
            </div>';
