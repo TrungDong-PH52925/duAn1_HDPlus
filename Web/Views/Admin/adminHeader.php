@@ -5,29 +5,36 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Quản trị Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../../../Web/Views/Admin/assets/img/favicon.png" rel="icon">
-  <link href="../../../Web/Views/Admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../../../public/img/logoo.jpg" rel="icon">
+  <link href="../../../public/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <?php
+// Xác định đường dẫn gốc của ứng dụng
+$base_url = "http://localhost/duAn1_HDPlus/";
+?>
 
-  <!-- Template Main CSS File  assets/css/style.css-->
-  <link href="../../../public/css/style2.css" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="<?php echo $base_url; ?>/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/quill/quill.snow.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/quill/quill.bubble.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="<?php echo $base_url; ?>/public/vendor/simple-datatables/style.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="<?php echo $base_url; ?>/public/css/style2.css" rel="stylesheet">
+
+
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -44,9 +51,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+      <a href="http://localhost/duAn1_HDPlus/Web/Views/Admin/adminIndex.php" class="logo d-flex align-items-center">
+        <img src="../../../public/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Admin Controller</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -211,7 +218,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="/duAn1_HDPlus/Web/public/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">Đức</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -257,9 +264,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-box-arrow-right"></i>
-                
-                    <span class="items"><a href="index.php?act=logout">Đăng xuất</a></span>
-             
+                <span>Sign Out</span>
               </a>
             </li>
 
@@ -277,93 +282,49 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="http://localhost/duAn1_HDPlus/Web/Views/Admin/adminIndex.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Danh mục</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed"  href="http://localhost/duAn1_HDPlus/Web/Views/Admin/danhmuc/list.php">
+          <i class="bi bi-menu-button-wide"></i><span>Danh mục</span>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="../NiceAdmin/iphone.html">
-              <i class="bi bi-circle"></i><span>Iphone</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Samsung</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Nokia</span>
-            </a>
-          </li>
-        </ul>
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed"  href="http://localhost/duAn1_HDPlus/Web/Views/Admin/product/list.php">
+          <i class="bi bi-journal-text"></i><span>Sản phẩm</span>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Iphone 15</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Vivo v25</span>
-            </a>
-          </li>
-        </ul>
+        
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Customers</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Khách hàng</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <!-- <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
+              <i class="bi bi-circle"></i><span>Quản lí thông tin khách hàng</span>
             </a>
           </li>
           <li>
             <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
-            </a>
-          </li>
-        </ul> -->
-      <!-- </li> -->
-      <!-- End Tables Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>ECharts</span>
+              <i class="bi bi-circle"></i><span>Quản lí bình luận</span>
             </a>
           </li>
         </ul>
+      </li>
+      <!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="http://localhost/duAn1_HDPlus/Web/Views/Admin/binhluan/list.php">
+          <i class="bi bi-bar-chart"></i><span>Quản lý bình luận</span>
+        </a>
+        
       </li><!-- End Charts Nav -->
 
       <!-- <li class="nav-item">
@@ -414,13 +375,7 @@
         </a>
       </li><!-- End Contact Page Nav -->
 
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li> -->
-      <!-- End Register Page Nav -->
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -445,4 +400,4 @@
 
     </ul>
 
-  </aside>
+  </aside><!-- End Sidebar-->

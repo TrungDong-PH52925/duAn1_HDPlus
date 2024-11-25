@@ -1,13 +1,30 @@
 
- <?php include_once "./Web/Views/Admin/adminHeader.php" ?>
+<?php include_once __DIR__ . '/../adminHeader.php';
 
-  <div class="container mt-2" style="max-width: 50%">
-    <h2 class="mb-4 mt-1" >Them</h2>
+?>
 
-    <!-- Form Thêm Danh Mục -->
-    <form action="index.php?act=addsp" method="POST" enctype="multipart/form-data">
-      
-      <!-- Tên Danh Mục -->
+<div class="container mt-2" style="max-width: 50%">
+  <h2 class="mb-4 mt-1" >Them</h2>
+
+  <!-- Form Thêm Danh Mục -->
+  <form action="http://localhost/duAn1_HDPlus/index.php?act=addsp" method="POST" enctype="multipart/form-data">
+    
+    <!-- Tên Danh Mục -->
+    <div class="mb-3">
+        <label for="categoryName" class="form-label">Id danh muc</label>
+       <select class="form-control" id="categogyId" required name="id_danhmuc">
+        <option value="">Chon danh muc</option>
+        <?php
+        
+       $dm = new danhMuc();
+       $listdanhmuc = $dm->getAll_danhMuc();
+        
+        foreach ($listdanhmuc as $dm) {
+          extract($dm);
+         echo "<option value='".$id_danhmuc."'>$ten_danhmuc</option>";
+       }
+        ?>
+       </select>
       <div class="mb-3">
         <label for="categoryName" class="form-label">Ten san pham</label>
         <input type="text" class="form-control" id="categoryName" name="ten_sanpham" required placeholder="Nhập tên san pham">
@@ -34,11 +51,11 @@
         <label for="" class="form-label">Mo ta san pham</label>
         <input type="text" class="form-control" id="categoryName" name="mota_sanpham" required placeholder="Nhập mo ta san pham">
       </div>
-      <!-- Nút Gửi -->
-      <button type="submit" class="btn btn-success" name="them" value="them">Thêm </button>
-      <a href="index.php?act=listsp" class="btn btn-secondary ml-3">Danh sách danh mục</a>
-    </form>
-  </div>
+    <!-- Nút Gửi -->
+    <button type="submit" class="btn btn-success" name="them" value="them">Thêm </button>
+    <a href="http://localhost/duAn1_HDPlus/index.php?act=listsp" class="btn btn-secondary ml-3">Danh sách danh mục</a>
+  </form>
+</div>
 
-  
-<?php include_once "./Web/Views/Admin/adminFooter.php" ?>
+
+<?php include_once __DIR__ . '/../adminFooter.php'; ?>

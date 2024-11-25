@@ -825,3 +825,27 @@ div {
     text-align: center;
   }
 }
+.product-price {
+  font-size: 2em;  /* Tăng kích thước font cho giá sản phẩm */
+  font-weight: bold;
+}
+
+.product-discount {
+  font-size: 1.2em;  /* Giảm kích thước font cho phần giảm giá */
+}
+
+.text-center {
+  text-align: center;  /* Đảm bảo phần tử này được căn giữa */
+}
+
+.d-block {
+  display: block;  /* Chắc chắn rằng phần tử giảm giá sẽ hiển thị trên dòng mới */
+}
+.product-name {
+  font-size: 24px; /* Đặt kích thước chữ lớn hơn */
+  font-family: 'Roboto', sans-serif; /* Đặt font chữ theo tên font của bạn */
+  font-weight: 500; /* Đặt độ đậm của font */
+  color: #333; /* Màu sắc chữ */
+  text-decoration: none;
+}
+

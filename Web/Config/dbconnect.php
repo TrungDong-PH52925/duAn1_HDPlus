@@ -2,6 +2,7 @@
 /**
  * Mở kết nối đến CSDL sử dụng PDO
  */
+define('BASE_URL', 'http://localhost/duAn1_HDPlus/');
 try {
     $conn = pdo_get_connection();
     // echo "Kết nối cơ sở dữ liệu thành công!";

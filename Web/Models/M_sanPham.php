@@ -1,37 +1,54 @@
 <?php
-include_once "Web/Config/dbconnect.php";
-function insert_sanpham($ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham){
-    $sql="INSERT INTO `sanpham`(`ten_sanpham`, `img_sanpham`, `gia_sanpham`, `giamgia_sanpham`, `quantity_sanpham`, `mota_sanpham`,`id_danhmuc`) VALUES (?,?,?,?,?,?,?)";
-     try {
-         pdo_execute($sql, $ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,null);
-        return true;
-     } catch (PDOException $e) {
-        //   In ra lỗi để kiểm tra
-         echo "Lỗi khi thêm sản phẩm: " . $e->getMessage();
-         return false;
-     }
+include_once(__DIR__ . '/../Config/dbconnect.php');
 
-     pdo_execute($sql,$ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham,null);
-}
-function loadAll_sanpham(){
-    $sql="SELECT * FROM `sanpham`";
-    $listsp=pdo_query($sql);
-    return $listsp;
-}
-function loadone_sanpham($id_sanpham){
-    $sql="SELECT * FROM `sanpham` WHERE id_sanpham='".$id_sanpham."'";
-    $sanpham=pdo_query_one($sql);
-    return $sanpham;
-}
-function update_sanpham($id_sanpham,$ten_sanpham,$img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham){
-    $sql="UPDATE `sanpham` SET `ten_sanpham` = '".$ten_sanpham."', `img_sanpham` = '".$img_sanpham."', `gia_sanpham` ='".$gia_sanpham."', `giamgia_sanpham` = '".$giamgia_sanpham."', `quantity_sanpham` ='".$quantity_sanpham."', `mota_sanpham` = '".$mota_sanpham."' WHERE `id_sanpham` = '".$id_sanpham."'";
-    
-pdo_execute($sql);
+class SanPham
+{
+    public function insert_sanpham($ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham, $id_danhmuc)
+    {
+        $sql = "INSERT INTO `sanpham`(`ten_sanpham`, `img_sanpham`, `gia_sanpham`, `giamgia_sanpham`, `quantity_sanpham`, `mota_sanpham`, `id_danhmuc`) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
+        pdo_execute($sql, $ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham, $id_danhmuc);
+    }
 
-} 
+    public function loadAll_sanpham()
+    {
+        $sql = "SELECT * FROM `sanpham`";
+        return pdo_query($sql);
+    }
 
-function delete_sanpham($id_sanpham){
-    $sql="DELETE FROM `sanpham` WHERE id_sanpham='".$id_sanpham."'";
-    pdo_execute($sql);
+    public function loadone_sanpham($id_sanpham)
+    {
+        $sql = "SELECT * FROM `sanpham` WHERE id_sanpham = ?";
+        return pdo_query_one($sql, $id_sanpham);
+    }
+    public function loadAll_sanpham_home()
+    {
+        $sql = "SELECT * FROM `sanpham`";
+        return pdo_query($sql);
+    }
+    public function update_sanpham($id_sanpham, $ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham, $id_danhmuc)
+    {
+        $sql = "UPDATE `sanpham` 
+                SET `ten_sanpham` = ?, 
+                    `img_sanpham` = ?, 
+                    `gia_sanpham` = ?, 
+                    `giamgia_sanpham` = ?, 
+                    `quantity_sanpham` = ?, 
+                    `mota_sanpham` = ?, 
+                    `id_danhmuc` = ? 
+                WHERE `id_sanpham` = ?";
+        pdo_execute($sql, $ten_sanpham, $img_sanpham, $gia_sanpham, $giamgia_sanpham, $quantity_sanpham, $mota_sanpham, $id_danhmuc, $id_sanpham);
+    }
+
+    public function delete_sanpham($id_sanpham)
+    {
+        $sql = "DELETE FROM `sanpham` WHERE id_sanpham = ?";
+        pdo_execute($sql, $id_sanpham);
+    }
+    public function loadsanPham_danhmuc($id_danhmuc)
+    {
+        $sql = "SELECT * FROM `sanpham` WHERE id_danhmuc='" . $id_danhmuc . "'";
+        $sp = pdo_query($sql);
+        return $sp;
+    }
 }
-?>
