@@ -46,7 +46,7 @@
                     <li class="items"><a href="../../../duAn1_HDPlus/Web/Views/Login/login.php">Đăng Nhâp</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['username'])): ?>
-                    <li class="items"><a href="index.php?act=logout">Đăng xuất</a></li>
+                    <li class="items"><a href="index.php?act=logout">Đăng xuất<i class="fa-solid fa-right-to-bracket"></i></a></li>
                 <?php endif; ?>
 
             </ul>
@@ -64,12 +64,14 @@
                 <i class="fa-solid fa-car"></i>
                 Kiểm tra đơn hàng
             </a>
-            <div class="menu--cart">
-                <a href="./html/cart.html" style="text-decoration: none;">
+            <div class="menu--cart" style="color: black !important;">
+                <a href="http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php" style="text-decoration: none; color: black !important;">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span>2</span>
+                    <!-- <span>!</span> -->
+                    Kiểm tra giỏ hàng
                 </a>
             </div>
+
             <label for="nav--list__check">
                 <i class="fa-solid fa-bars"></i>
             </label>
@@ -111,34 +113,3 @@
                 </a></li>
             </ul>
         </nav>
-        <!-- mobile  -->
-        <!-- <div class="nav--mobile">
-            <input type="checkbox" id="nav--list__check" hidden>
-            <label for="nav--list__check" class="bg--cover__mobile"></label>
-
-            <ul class="nav--infomation__mobile">
-                <li class="tool">
-                    <a href="#0" class="menu--check__product" title="Kiểm tra đơn hàng">
-                        <i class="fa-solid fa-car"></i>
-                    </a>
-                    <a href="./html/cart.html" class="menu--cart" title="Giỏ hàng">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>2</span>
-                    </a>
-                </li>
-                <li class="items"><a href="../index.html">Trang Chủ</a></li>
-                <li class="items"><a href="./html/introduce.html">Giới thiệu</a></li>
-                <li class="items"><a href="./html/watched.html">Sản phẩm đã xem</a></li>
-                <li class="items"><a href="./html/guarantee.html">Trung tâm bảo hành</a></li>
-                <li class="items"><a href="#0">Hệ thông 128 siêu thị</a></li>
-                <li class="items"><a href="./html/recruitment.html">Tuyển dụng</a></li>
-                <li class="items"><a href="./html/tracuu.html">Tra cứu</a></li>
-                <li class="items"><a href="./html/login.html">Đăng Nhâp</a></li>
-
-                <div class="close--menu__mobile">
-                    <label for="nav--list__check">Đóng</label>
-                </div>
-            </ul>
-
-        </div> -->
-        

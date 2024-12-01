@@ -62,3 +62,15 @@ body{
 .form-submit:hover{
     border: 1px solid #54a0ff;
 }
+.btn-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

@@ -849,3 +849,53 @@ div {
   text-decoration: none;
 }
 
+/* Giảm kích thước của các input số lượng */
+.form-control {
+  width: 60px;
+  padding: 5px;
+  font-size: 14px;
+}
+.form-control2{
+  width: 300px;
+  padding: 5px;
+  font-size: 14px;
+}
+/* Giảm kích thước của các nút bấm */
+.btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Điều chỉnh bảng giỏ hàng để giảm kích thước tổng thể */
+#cartItems td {
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* Điều chỉnh tổng tiền giỏ hàng */
+#cartTotal {
+  font-size: 18px;
+}
+
+/* Làm cho giỏ hàng và các phần tử bên trong thẳng hàng và gọn gàng */
+.cart-table {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Tùy chỉnh giỏ hàng cho màn hình nhỏ */
+@media (max-width: 768px) {
+  #cartItems td {
+      padding: 5px;
+  }
+
+  .form-control {
+      width: 50px;
+  }
+
+  .btn {
+      padding: 6px 10px;
+  }
+}
+

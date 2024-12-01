@@ -51,4 +51,9 @@ class SanPham
         $sp = pdo_query($sql);
         return $sp;
     }
+    public function list_sanphammoi(){
+        $sql="SELECT * FROM `sanpham` ORDER BY id_sanpham DESC LIMIT 6";
+        $sp=pdo_query($sql);
+        return $sp;
+    }
 }

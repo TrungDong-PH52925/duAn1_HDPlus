@@ -23,7 +23,8 @@ if (isset($_SESSION['error'])) {
 
 <body>
     <div id="wrapper">
-        <form action="../../../index.php?act=login" id="form-login" method="post">
+        <form action="../../../index.php?act=login" id="form-login" method="post">   
+       
             <h1 class="form-heading">Form đăng nhập</h1>
             <div class="form-group">
                 <i class="far fa-user"></i>
@@ -36,12 +37,15 @@ if (isset($_SESSION['error'])) {
                     <i class="far fa-eye"></i>
                 </div>
             </div>
-            <button type="submit" name="dangnhap" class="form-submit" >Đăng nhập</button>
+            <button type="submit" name="dangnhap" class="form-submit">Đăng nhập</button>
             <div class="row">
                 <div class="button-group">
                     <a class="btn btn-link ajax-content" href="../../../Web/Views/Login/register.php">ĐĂNG KÝ</a>
+                    <!-- Nút quay lại -->
+                    <a class="btn btn-link" href="../../../index.php" style="float:right">Quay lai</a>
                 </div>
             </div>
+
         </form>
     </div>
 

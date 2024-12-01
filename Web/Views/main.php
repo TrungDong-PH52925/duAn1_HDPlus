@@ -1,29 +1,28 @@
-<?php 
-    require_once "Web/Models/M_sanPham.php";
-    require_once "Web/Models/M_danhMuc.php";
+<?php
+require_once "Web/Models/M_sanPham.php";
+require_once "Web/Models/M_danhMuc.php";
 ?>
 
 <div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <!-- <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="..."> -->
-            <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="./public/img/home/deal-dac-biet-thang-5-mobile.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="./public/img/home/galaxy-s24-ultra-mobile.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="./public/img/home/oscal-tiger-12-640x266.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="./public/img/home/dat-truoc-xiaomi-14-ultra-640x266.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="./public/img/home/spark-20-pro-plus-640x266.png" class="d-block w-100" alt="...">
-        </div>
+
+        <?php $bn = new Banner();
+        $listbanner = $bn->getAll_Banner();
+        foreach ($listbanner as $banner) {
+            extract($banner);
+            $imgpath = "./public/upload/" . $img_banner;
+            if (is_file($imgpath)) {
+                $hinh = "<img src='" . $imgpath . "' class='d-block w-100' alt='...'>";
+            } else {
+                $hinh = "no photo";
+            }
+            echo '<div class="carousel-item active">
+                    <img src="' . $imgpath . '" class="d-block w-100" alt="...">
+                </div>';
+        }
+        ?>
+
+
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
         data-bs-slide="prev">
@@ -39,11 +38,11 @@
 </header>
 <section class="phone">
     <div class="container">
-        <h1 class="phone--title animate__animated animate__bounceInLeft text-center">SẢN PHẨM BÁN CHẠY</h1>
+        <h1 class="phone--title animate__animated animate__bounceInLeft text-center">SẢN PHẨM MỚI NHẤT</h1>
         <div class="row g-3 wow" data-wow-offset="100" data-wow-iteration="100">
             <?php
             $sp = new sanPham();
-            $spnew = $sp->loadAll_sanpham_home(); 
+            $spnew = $sp->list_sanphammoi();
             foreach ($spnew as $listsp) {
                 extract($listsp);
                 $linksp = "index.php?act=chitietsp&id_sanpham=";
@@ -52,9 +51,10 @@
                     <div class="card phone--card">
                         <!-- Link sản phẩm -->
                         <a href="' . $linksp . $id_sanpham . '" class="product-link text-decoration-none">
-                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                                <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" class="img-fluid">
+                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center;">
+    <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" style="height: 100%; width: 200px; object-fit: contain;">
                             </div>
+
                             <h3 class="product-name text-center mt-2">' . $ten_sanpham . '</h3>
                         </a>
                         <!-- Giá sản phẩm -->
@@ -68,7 +68,7 @@
                             <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
                             <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
                             <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            <button type="submit" class="btn btn-primary">Thêm vào giỏ</button>
+                            
                         </form>
                     </div>
                 </div>';
@@ -108,8 +108,8 @@
                     <div class="card phone--card">
                         <!-- Link sản phẩm -->
                         <a href="' . $linksp . '" class="product-link text-decoration-none">
-                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                                <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" class="img-fluid">
+                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center;">
+    <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" style="height: 100%; width: 200px; object-fit: contain;">
                             </div>
                             <h3 class="product-name text-center mt-2">' . $ten_sanpham . '</h3>
                         </a>
@@ -124,7 +124,7 @@
                             <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
                             <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
                             <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            <button type="submit" class="btn btn-primary">Thêm vào giỏ</button>
+                            
                         </form>
                     </div>
                 </div>';
@@ -157,8 +157,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card phone--card">
                         <a href="' . $linksp . '" class="product-link text-decoration-none">
-                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                                <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" class="img-fluid">
+                           <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center;">
+    <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" style="height: 100%; width: 200px; object-fit: contain;">
                             </div>
                             <h3 class="product-name text-center mt-2">' . $ten_sanpham . '</h3>
                         </a>
@@ -171,7 +171,7 @@
                             <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
                             <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
                             <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            <button type="submit" class="btn btn-primary">Thêm vào giỏ</button>
+                            
                         </form>
                     </div>
                 </div>';
@@ -201,8 +201,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card phone--card">
                         <a href="' . $linksp . '" class="product-link text-decoration-none">
-                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                                <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" class="img-fluid">
+                            <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center;">
+    <img src="' . $img_sanpham . '" alt="' . $ten_sanpham . '" style="height: 100%; width: 200px; object-fit: contain;">
                             </div>
                             <h3 class="product-name text-center mt-2">' . $ten_sanpham . '</h3>
                         </a>
@@ -215,7 +215,7 @@
                             <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
                             <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
                             <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            <button type="submit" class="btn btn-primary">Thêm vào giỏ</button>
+                            
                         </form>
                     </div>
                 </div>';
@@ -229,69 +229,69 @@
 </section>
 
 <!-- <Section class="customer"> -->
-    <h1 class="customer--title">KHÁCH HÀNG CỦA MY PHONE</h1>
-    <div class="customer--container wow " data-wow-offset="100" data- wow-iteration="100">
-        <div class="customer--list">
-            <div class="customer--list__item">
-                <div class="img">
-                    <img src="./public/img/a.jpg" alt="">
-                </div>
-                <div class="customer--text">
-                    <h2>Đỗ Quang Huy</h2>
-                    <b>Sinh Viên</b>
-                    <span class="text-clamp">Hôm nay, Huy quyết định tới cửa hàng công nghệ uy tín - MyPhone, để tìm
-                        kiếm một sản phẩm
-                        phù hợp với nhu cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới
-                        công nghệ, Huy muốn sở hữu một chiếc điện thoại thông minh không chỉ để hỗ trợ việc học tập
-                        mà còn để duy trì liên lạc và giải trí trong thời gian rảnh rỗi.</span>
-                </div>
+<h1 class="customer--title">KHÁCH HÀNG CỦA MY PHONE</h1>
+<div class="customer--container wow " data-wow-offset="100" data- wow-iteration="100">
+    <div class="customer--list">
+        <div class="customer--list__item">
+            <div class="img">
+                <img src="./public/img/a.jpg" alt="">
             </div>
-            <div class="customer--list__item">
-                <div class="img">
-                    <img src="./public/img/home/user2.jpg" alt="">
-                </div>
-                <div class="customer--text">
-                    <h2>Nguyễn Minh Thuận</h2>
-                    <b>Sinh Viên</b>
-                    <span class="text-clamp">Hôm nay, Thuận quyết định tới cửa hàng công nghệ uy tín - MyPhone, để
-                        tìm kiếm
-                        một sản phẩm phù hợp với nhu
-                        cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới công nghệ,
-                        Thuận muốn sở hữu một chiếc điện
-                        thoại thông minh không chỉ để hỗ trợ việc học tập mà còn để duy trì liên lạc và giải trí
-                        trong thời gian rảnh rỗi.
-                    </span>
-                </div>
+            <div class="customer--text">
+                <h2>Đỗ Quang Huy</h2>
+                <b>Sinh Viên</b>
+                <span class="text-clamp">Hôm nay, Huy quyết định tới cửa hàng công nghệ uy tín - MyPhone, để tìm
+                    kiếm một sản phẩm
+                    phù hợp với nhu cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới
+                    công nghệ, Huy muốn sở hữu một chiếc điện thoại thông minh không chỉ để hỗ trợ việc học tập
+                    mà còn để duy trì liên lạc và giải trí trong thời gian rảnh rỗi.</span>
             </div>
-            <div class="customer--list__item">
-                <div class="img">
-                    <img src="./public/img/home/user3.jpg" alt="">
-                </div>
-                <div class="customer--text">
-                    <h2>Nguyễn Thị Ánh</h2>
-                    <b>Sinh Viên</b>
-                    <span class="text-clamp">Ánh đã quyết định ghé thăm cửa hàng công nghệ danh tiếng - MyPhone, để
-                        tìm một
-                        chiếc điện thoại phù hợp với
-                        nhu cầu cá nhân. Với cuộc sống bận rộn của mình, Ánh cần một chiếc smartphone không chỉ hỗ
-                        trợ công việc hiệu quả mà còn
-                        giúp cô dễ dàng kết nối với gia đình và bạn bè. Đặc biệt, Ánh tìm kiếm một thiết bị có hiệu
-                        năng mạnh mẽ, camera sắc nét
-                        .</span>
-                </div>
+        </div>
+        <div class="customer--list__item">
+            <div class="img">
+                <img src="./public/img/home/user2.jpg" alt="">
             </div>
-            <div class="customer--list__item">
-                <div class="img">
-                    <img src="./public/img/home/user4.jpg" alt="">
-                </div>
-                <div class="customer--text">
-                    <h2>Nguyễn Thành Nam</h2>
-                    <b>Nhà Đầu Tư</b>
-                    <span class="text-clamp">Nam Là 1 Nhà đầu tư đi đầu ở Việt Nam , nay anh ấy đến MyPhone của
-                        chúng tôi để mua 10 chiếc điện thoại để anhcó thể xem biểu đồ dễ dàng hơn và phát hiện, một
-                        cách nhanh chóng hơn
-                        .</span>
-                </div>
+            <div class="customer--text">
+                <h2>Nguyễn Minh Thuận</h2>
+                <b>Sinh Viên</b>
+                <span class="text-clamp">Hôm nay, Thuận quyết định tới cửa hàng công nghệ uy tín - MyPhone, để
+                    tìm kiếm
+                    một sản phẩm phù hợp với nhu
+                    cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới công nghệ,
+                    Thuận muốn sở hữu một chiếc điện
+                    thoại thông minh không chỉ để hỗ trợ việc học tập mà còn để duy trì liên lạc và giải trí
+                    trong thời gian rảnh rỗi.
+                </span>
+            </div>
+        </div>
+        <div class="customer--list__item">
+            <div class="img">
+                <img src="./public/img/home/user3.jpg" alt="">
+            </div>
+            <div class="customer--text">
+                <h2>Nguyễn Thị Ánh</h2>
+                <b>Sinh Viên</b>
+                <span class="text-clamp">Ánh đã quyết định ghé thăm cửa hàng công nghệ danh tiếng - MyPhone, để
+                    tìm một
+                    chiếc điện thoại phù hợp với
+                    nhu cầu cá nhân. Với cuộc sống bận rộn của mình, Ánh cần một chiếc smartphone không chỉ hỗ
+                    trợ công việc hiệu quả mà còn
+                    giúp cô dễ dàng kết nối với gia đình và bạn bè. Đặc biệt, Ánh tìm kiếm một thiết bị có hiệu
+                    năng mạnh mẽ, camera sắc nét
+                    .</span>
+            </div>
+        </div>
+        <div class="customer--list__item">
+            <div class="img">
+                <img src="./public/img/home/user4.jpg" alt="">
+            </div>
+            <div class="customer--text">
+                <h2>Nguyễn Thành Nam</h2>
+                <b>Nhà Đầu Tư</b>
+                <span class="text-clamp">Nam Là 1 Nhà đầu tư đi đầu ở Việt Nam , nay anh ấy đến MyPhone của
+                    chúng tôi để mua 10 chiếc điện thoại để anhcó thể xem biểu đồ dễ dàng hơn và phát hiện, một
+                    cách nhanh chóng hơn
+                    .</span>
             </div>
         </div>
     </div>
+</div>

@@ -96,19 +96,24 @@ function pdo_query_one($sql){
  * @return giá trị
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_query_value($sql){
+function pdo_query_value($sql) {
     $sql_args = array_slice(func_get_args(), 1);
-    try{
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
+
+        // Nếu có tham số, sử dụng mảng các tham số để thực thi
+        if (count($sql_args) > 0) {
+            $stmt->execute($sql_args);  // Truyền trực tiếp mảng tham số
+        } else {
+            $stmt->execute();
+        }
+
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return array_values($row)[0];
-    }
-    catch(PDOException $e){
+        return $row ? array_values($row)[0] : null; // Trả về giá trị đầu tiên hoặc null nếu không có kết quả
+    } catch (PDOException $e) {
         throw $e;
-    }
-    finally{
+    } finally {
         unset($conn);
     }
 }
