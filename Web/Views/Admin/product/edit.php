@@ -1,10 +1,9 @@
-
 <?php
  include_once "./Web/Views/Admin/adminHeader.php" ;
 if(is_array($upone)){
 
   extract($upone);
-       var_dump($upone);
+      //  var_dump($upone);
 }
 
 
@@ -21,6 +20,25 @@ if(is_array($upone)){
         <input type="hidden" class="form-control" id="categoryName" name="id_sanpham" required value="<?=$id_sanpham?>">
       </div> 
       <div class="mb-3">
+        <label for="categoryName" class="form-label">Danh Mục</label>
+       <select class="form-control" id="categogyId" required name="id_danhmuc">
+        <option value="">Chon danh muc</option>
+        <?php
+        
+       $dm = new danhMuc();
+       $listdanhmuc = $dm->getAll_danhMuc();
+        
+        foreach ($listdanhmuc as $dm) {
+          extract($dm);
+          // if($id_danhmuc==$id_danhmuc)
+          $select=($id_danhmuc == $upone['id_danhmuc']) ?'selected':'';
+        //  if($id_danhmuc == $upone['id_danhmuc'])
+         echo "<option value='".$id_danhmuc."'$select>$ten_danhmuc</option>";
+       }
+        ?>
+       </select>
+      </div>
+      <div class="mb-3">
         <label for="categoryName" class="form-label">Ten san pham</label>
         <input type="text" class="form-control" id="categoryName" name="ten_sanpham" required value="<?=$ten_sanpham?>">
        
@@ -29,8 +47,8 @@ if(is_array($upone)){
       <!-- Ảnh Danh Mục -->
       <div class="mb-3">
         <label for="categoryImage" class="form-label">Ảnh san pham</label>
-        <input type="file" class="form-control" id="categoryImage" name="img_sanpham" required  >
-       <img src="<?=$img_sanpham?>">
+        <input type="file"  class="form-control" id="categoryImage" name="img_sanpham" required  >
+       <img src="<?=$img_sanpham?>" style width="200px" height="200px">
         
       </div>
       <div class="mb-3">
@@ -51,9 +69,7 @@ if(is_array($upone)){
       </div>
       <!-- Nút Gửi -->
       <button type="submit" class="btn btn-success" name="capnhat" value="capnhat">Cập nhật </button>
-      <a href="index.php?act=listsp" class="btn btn-secondary ml-3">Danh sách danh mục</a>
+      <a href="index.php?act=listsp" class="btn btn-secondary ml-3">Danh sách sản phẩm</a>
     </form>
   </div>
-
- 
-<?php include_once "./Web/Views/Admin/adminFooter.php" ?>
+  <?php include_once "./Web/Views/Admin/adminFooter.php" ?>

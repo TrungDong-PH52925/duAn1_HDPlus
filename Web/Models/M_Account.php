@@ -23,7 +23,7 @@ function insert_user($ten_user, $sdt_user, $gmail_user, $account_user, $pass_use
         $sql = "INSERT INTO user (ten_user, sdt_user, gmail_user, account_user, pass_user, address_user, img_user) 
                 VALUES ('$ten_user','$sdt_user','$gmail_user','$account_user','$pass_user','$address_user','$img_user')";
         pdo_execute($sql);
-        return true; // Trả về true nếu chèn thành công
+        return true; // Trả về true nếu chèn t-hành công
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
         return false; // Trả về false nếu có lỗi
@@ -41,5 +41,24 @@ function check_duplicate_user($account_user, $gmail_user) {
     $result = pdo_query($sql, [$account_user, $gmail_user]);
     return !empty($result);
 }
+
+//thêm function để user cập nhập thông tin cá nhân
+function update_user($id_user, $ten_user, $sdt_user, $gmail_user, $account_user, $pass_user, $address_user, $img_user, $role) {
+    $sql = "UPDATE user SET 
+            ten_user = '$ten_user', 
+            sdt_user = '$sdt_user', 
+            gmail_user = '$gmail_user', 
+            account_user = '$account_user', 
+            pass_user = '$pass_user', 
+            address_user = '$address_user', 
+            img_user = '$img_user', 
+            `role` = '$role' 
+            WHERE id_user = '$id_user'";
+    pdo_execute($sql);
+    return $sql;
+}
+
+
+//thanh toán cần thông tin user và thông tin giỏ hàng -> lưu thông tin thanh toán vào db
 
 ?>

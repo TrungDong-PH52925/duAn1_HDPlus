@@ -37,13 +37,13 @@
         </section>
     </Section>
     <!-- end customer -->
-    <div class="contact">
+    <!-- <div class="contact">
         <a href="https://www.facebook.com/profile.php?id=61567235125171" title="facebook"><i
                 class="fa-brands fa-facebook"></i></a>
         <a href="https://www.youtube.com/" title="youtube"><i class="fa-brands fa-youtube"></i></a>
         <a href="#"><i class="fa-solid fa-envelope" title="Email"></i></a>
         <a href="#"><i class="fa-brands fa-telegram" title="Telegram"></i></a>
-    </div>
+    </div> -->
     <!-- END ICON SUBPORT -->
     <a href="#" class="back-top">
         <i class="fa-solid fa-angle-up"></i>

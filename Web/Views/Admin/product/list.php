@@ -1,4 +1,3 @@
-
 <?php 
 include_once "./Web/Views/Admin/adminHeader.php"
  ?>
@@ -12,7 +11,7 @@ include_once "./Web/Views/Admin/adminHeader.php"
 
       <thead>
         <tr >
-        
+          <th scope="col">Id danh muc</th>
           <th scope="col">Tên sản phẩm</th>
           <th scope="col">Ảnh sản phẩm</th>
           <th scope="col">Giảm giá sản phẩm</th>
@@ -40,7 +39,7 @@ include_once "./Web/Views/Admin/adminHeader.php"
         }
         echo '
         <tr class="text-center">
-        
+        <td>'.$id_danhmuc.'</td>
             <td>'.$ten_sanpham.'</td>
             <td >'.$img_sanpham.'</td>
             <td>'.$gia_sanpham.'</td>
