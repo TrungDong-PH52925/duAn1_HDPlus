@@ -1,7 +1,13 @@
 <?php
-// require "Web/Models/M_Account.php";
+require "Web/Models/M_Account.php";
+
 class C_Account
 {
+    protected $cartModel;
+    public function __construct()
+    {
+        $this->cartModel = new CartModel(); 
+    }
     public function handleLogin()
     {
         // Kiểm tra nếu có dữ liệu gửi từ form login
@@ -24,32 +30,65 @@ class C_Account
 
                 if ($role == 1) {  // Nếu là quản trị viên
                     $_SESSION['role'] = $role;
-                    header('Location: Web/Views/Admin/adminIndex.php');
+                    header('Location: index.php?act=admin');
                     exit;
                 } else {  // Nếu là người dùng bình thường
-                    $_SESSION['role'] = $role;
+                    $_SESSION['role'] = $result[0]['role'];
+
+
+                    $_SESSION['id_user'] = $result[0]['id_user'];
                     $_SESSION['username'] = $result[0]['account_user'];
-                    $_SESSION['iduser'] = $result[0]['id_user'];
+                    $_SESSION['ten_user'] = $result[0]['ten_user'];
+                    $_SESSION['sdt_user'] = $result[0]['sdt_user'];
+                    $_SESSION['gmail_user'] = $result[0]['gmail_user'];
+                    $_SESSION['address_user'] = $result[0]['address_user'];
+                    $_SESSION['img_user'] = $result[0]['img_user'];
+                    $_SESSION['pass_user'] = $result[0]['pass_user'];
+                    $_SESSION['id_sanpham'] = $result[0]['id_sanpham'];
+                    // $_SESSION['id_cart'] = $result[0]['id_cart'];
+                    $_SESSION['created_at'] = $result[0]['created_at'];
+                    //cart item
+                    $_SESSION['total'] = $result[0]['total'];
+                    
+                    // Khôi phục giỏ hàng từ cơ sở dữ liệu
+                    $id_cart = $this->cartModel->getCartIdByUserId($_SESSION['id_user']); // Lấy id_cart từ cơ sở dữ liệu
+                    $_SESSION['id_cart'] = $id_cart; // Lưu id_cart vào session
+
+                    // Nếu có id_cart, lấy sản phẩm từ giỏ hàng
+                    if ($id_cart) {
+                        $cartItems = $this->cartModel->getCartByCartId($id_cart);
+                        if (!empty($cartItems)) {
+                            $_SESSION['cart'] = $cartItems; // Lưu giỏ hàng vào session
+                        } else {
+                            $_SESSION['cart'] = []; // Nếu không có sản phẩm nào
+                        }
+                    } else {
+                        $_SESSION['cart'] = []; // Nếu không có id_cart, khởi tạo giỏ hàng rỗng
+                    }
+
+
+
+
                     header('Location: index.php');
                     exit;
                 }
             } else {
                 // Nếu không tìm thấy tài khoản hoặc mật khẩu sai
                 $_SESSION['error'] = "Tài khoản hoặc mật khẩu không đúng.";
-                header('Location: Web/Views/Login/login.php');
+                header('Location: ../../../duAn1_HDPlus/Web/Views/Login/login.php');
                 exit;
             }
         }
     }
     public function handleLogout()
     {
-         // Hủy tất cả session
-         session_unset();
-         session_destroy();
+        // Hủy tất cả session
+        session_unset();
+        session_destroy();
 
-         // Chuyển hướng về trang đăng nhập sau khi đăng xuất
-         header('Location: ../../../duAn1_HDPlus/Web/Views/Login/login.php');
-         exit;
+        // Chuyển hướng về trang đăng nhập sau khi đăng xuất
+        header('Location: ../../../duAn1_HDPlus/Web/Views/Login/login.php');
+        exit;
     }
     public function handleRegister()
     {
@@ -86,16 +125,73 @@ class C_Account
 
             // Gọi hàm insert_user để thêm người dùng vào cơ sở dữ liệu
             $result = insert_user($ten_user, $sdt_user, $gmail_user, $account_user, $pass_user, $address_user, $img_user);
-           
+
             if ($result) {
                 $_SESSION['success'] = "Đăng ký thành công!";
                 header('Location: ../../../duAn1_HDPlus/Web/Views/Login/login.php'); // Chuyển hướng đến trang login
                 exit;
             } else {
                 // error_log("Insert user failed for account: $account_user");
-                 $_SESSION['error'] = "Có lỗi xảy ra. Vui lòng thử lại.";
+                $_SESSION['error'] = "Có lỗi xảy ra. Vui lòng thử lại.";
                 header('Location: ../../../duAn1_HDPlus/Web/Views/Login/register.php'); // Quay lại trang đăng ký
-               
+
+                exit;
+            }
+        }
+    }
+
+    public function update_User()
+    {
+        // var_dump($_POST['savett']);
+        // var_dump($_POST);
+        // var_dump($_FILES);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['savett'])) {
+            // Lấy dữ liệu từ form
+            $role = $_POST['role'];
+            $id_user = $_POST['id_user'];
+            $ten_user = $_POST['ten_user'];
+            $sdt_user = $_POST['sdt_user'];
+            $gmail_user = $_POST['gmail_user'];
+            $account_user = $_POST['account_user'];
+            $pass_user = $_POST['pass_user'];
+            $address_user = $_POST['address_user'];
+
+
+
+            // Xử lý ảnh người dùng (nếu có)
+            $img_user = null;
+            if (isset($_FILES['img_user']) && $_FILES['img_user']['error'] == 0) {
+                $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+                if (in_array($_FILES['img_user']['type'], $allowed_types)) {
+                    $img_user = './public/upload/' . uniqid() . '_' . basename($_FILES['img_user']['name']);
+                    move_uploaded_file($_FILES['img_user']['tmp_name'], $img_user);
+                } else {
+                    $_SESSION['error'] = "Định dạng ảnh không hợp lệ.";
+                    header('Location: index.php?act=user');
+                    exit;
+                }
+            }
+
+            // if (check_duplicate_user($account_user, $gmail_user)) {
+            //     $_SESSION['error'] = "Tài khoản hoặc email đã tồn tại.";
+            //     header('Location: index.php?act=user');
+            //     exit;
+            // }
+
+            // Gọi hàm update_user để cập nhập thông tin người dùng vào cơ sở dữ liệu
+
+            $update =  update_user($id_user, $ten_user, $sdt_user, $gmail_user, $account_user, $pass_user, $address_user, $img_user, $role);
+            if ($update) {
+                $_SESSION['success'] = "Cập nhập thành công!";
+                header('Location: index.php?act=user');
+                return $update;
+                exit;
+            } else {
+                // error_log("Insert user failed for account: $account_user");
+                $_SESSION['error'] = "Có lỗi xảy ra. Vui lòng thử lại.";
+                header('Location: index.php?act=user');
+                return $update;
                 exit;
             }
         }
