@@ -109,7 +109,7 @@ if(isset($result)&&!empty($result)):?>
 
 
 <!-- END SẢM PHẬP BÁN CHẠY -->
-<section class="paner wow " data-wow-offset="100" data- wow-iteration="100">
+<section class="paner wow " >
     <div class="paner--img">
         <img src="./public/img/home/paner1.jpg" alt="">
     </div>
@@ -117,7 +117,7 @@ if(isset($result)&&!empty($result)):?>
 <br>
 
 <!-- sản phẩm theo danh mục -->
-<section class="phone wow slideInRight" data-wow-offset="300" data-wow-iteration="10">
+<section class="phone wow" data-wow-offset="300" data-wow-iteration="10">
     <div class="container">
         <h1 class="phone--title text-center">SẢN PHẨM APPLE</h1>
         <div class="row g-3 wow" data-wow-offset="100" data-wow-iteration="100">

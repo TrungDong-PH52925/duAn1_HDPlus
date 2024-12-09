@@ -47,7 +47,7 @@ class SanPham
     }
     public function loadsanPham_danhmuc($id_danhmuc)
     {
-        $sql = "SELECT * FROM `sanpham` WHERE id_danhmuc='" . $id_danhmuc . "'";
+        $sql = "SELECT * FROM `sanpham` WHERE id_danhmuc='" . $id_danhmuc . "' LIMIT 1";
         $sp = pdo_query($sql);
         return $sp;
     }

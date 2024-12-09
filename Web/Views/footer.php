@@ -5,28 +5,28 @@
             <div class="utilities--container">
                 <div class="row wow " data-wow-offset="100" data- wow-iteration="100">
                     <div class=" col-6 col-md-3  box">
-                        <div class="img"><img src="./public/img/home/utilities1.png" alt=""></div>
+                        <div class="img"><img src="/public/img/home/utilities1.png" alt=""></div>
                         <div class="box--text">
                             <span>Sản Phẩm</span>
                             <b>Chính hãng</b>
                         </div>
                     </div>
                     <div class=" col-6 col-md-3 box">
-                        <div class="img"><img src="./public/img/home/utilities.png" alt=""></div>
+                        <div class="img"><img src="/public/img/home/utilities.png" alt=""></div>
                         <div class="box--text">
                             <span>Miễn phí vận chuyểnm</span>
                             <b>TOÀN QUỐC</b>
                         </div>
                     </div>
                     <div class=" col-6 col-md-3 box">
-                        <div class="img"><img src="./public/img/home/utilities3.png" alt=""></div>
+                        <div class="img"><img src="/public/img/home/utilities3.png" alt=""></div>
                         <div class="box--text">
                             <span>Hotline hỗ trợ</span>
                             <b>1900.2091</b>
                         </div>
                     </div>
                     <div class=" col-6 col-md-3 box">
-                        <div class="img"><img src="./public/img/home/utilities4.png" alt=""></div>
+                        <div class="img"><img src="/public/img/home/utilities4.png" alt=""></div>
                         <div class="box--text">
                             <span>Thủ tục đổi trả</span>
                             <b>DỄ DÀNG</b>
@@ -83,7 +83,7 @@
                                     <img src="./public/img/home/logo-visa.png" alt="">
                                 </div>
                                 <div class="img">
-                                    <img src="./public/img/home/logo-master.png" alt="">
+                                    <img src="/public/img/home/logo-master.png" alt="">
                                 </div>
                             </div>
                         </li>
@@ -93,17 +93,17 @@
                                     <img src="./public/img/home/logo-jcb.png" alt="">
                                 </div>
                                 <div class="img">
-                                    <img src="./public/img/home/logo-samsungpay.png" alt="">
+                                    <img src="/public/img/home/logo-samsungpay.png" alt="">
                                 </div>
                             </div>
                         </li>
                         <li class="pay">
                             <div class="logo--pay">
                                 <div class="img">
-                                    <img src="./public/img/home/logo-atm.png" alt="">
+                                    <img src="/public/img/home/logo-atm.png" alt="">
                                 </div>
                                 <div class="img">
-                                    <img src="./public/img/home/logo-vnpay.png" alt="">
+                                    <img src="/public/img/home/logo-vnpay.png" alt="">
                                 </div>
                             </div>
                         </li>
@@ -117,10 +117,10 @@
                             <div class="col-12">
                                 <div class="logo--convert">
                                     <div class="img">
-                                        <img src="./public/img/home/nhattin.jpg" alt="">
+                                        <img src="/public/img/home/nhattin.jpg" alt="">
                                     </div>
                                     <div class="img">
-                                        <img src="./public/img/home/vnpost.jpg" alt="">
+                                        <img src="/public/img/home/vnpost.jpg" alt="">
                                     </div>
                                 </div>
                             </div>
