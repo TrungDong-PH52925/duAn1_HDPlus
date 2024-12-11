@@ -11,14 +11,14 @@
   object-fit: cover;
 }
 /* Styling cơ bản cho form */
-form {
+/* form {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px #ccc;
   background: #fff;
-}
+} */
 
 /* Styling cho các label và input */
 label {

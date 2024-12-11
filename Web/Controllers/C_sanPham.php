@@ -127,4 +127,24 @@ class sanPhamController
            echo "Không tìm thấy ID sản phẩm!";
        }
    }
+
+   public function search($keyword){
+     
+      if(isset($_GET['search'])&&($_GET['search'])!=""){
+        
+         $keyword=$_GET['search'];
+      
+         $sanpham= new SanPham();
+         $result=$sanpham->search($keyword);
+         
+         return $result;
+         
+         
+      }else{
+         $result =[];
+         
+      }
+
+
+} 
 }

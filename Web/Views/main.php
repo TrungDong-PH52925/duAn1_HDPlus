@@ -35,7 +35,43 @@ require_once "Web/Models/M_danhMuc.php";
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+
 </header>
+<?php
+$sp = new sanPham();
+$spnew = $sp->list_sanphammoi();
+$linksp = "index.php?act=chitietsp&id_sanpham=";
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $keyword = $_GET['search'];
+    $result = $C_sanpham->search($keyword);
+}
+
+if (isset($result) && !empty($result)) { ?>
+    <div class="container">
+        <div class="row">
+            <h2 class="phone--title animate__animated animate__bounceInLeft text-center">Kết quả tìm kiếm</h2>
+            <div class="row g-3 wow" data-wow-offset="100" data-wow-iteration="100">
+                <?php foreach ($result as $product) { ?>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card phone--card">
+                            <a href="<?php echo $linksp . $product['id_sanpham'] ?>" class="product-link text-decoration-none">
+                                <div class="img" style="height: 300px; display: flex; justify-content: center; align-items: center;">
+                                    <img src="<?php echo $product['img_sanpham']; ?>" alt="<?php echo $product['ten_sanpham']; ?>" style="height: 100%; width: 200px; object-fit: contain;">
+                                </div>
+                                <h3 class="product-name text-center mt-2"><?php echo $product['ten_sanpham']; ?></h3>
+                            </a>
+                            <!-- Giá sản phẩm -->
+                            <div class="text-center">
+                                <span class="text-success fw-bold d-block"><?php echo number_format($product['gia_sanpham'], 0, ',', '.') . ' VND'; ?></span>
+                                <span class="text-danger fw-bold d-block">Giảm: <?php echo number_format($product['giamgia_sanpham'], 0, ',', '.') . ' VND'; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+<?php } else { ?>
 <section class="phone">
     <div class="container">
         <h1 class="phone--title animate__animated animate__bounceInLeft text-center">SẢN PHẨM MỚI NHẤT</h1>
@@ -63,13 +99,7 @@ require_once "Web/Models/M_danhMuc.php";
                             <span class="text-danger fw-bold d-block">Giảm: ' . number_format($giamgia_sanpham, 0, ',', '.') . ' VND</span>
                         </div>
                         <!-- Thêm vào giỏ hàng -->
-                        <form action="index.php?act=addtocart" method="post" class="text-center mt-3">
-                            <input type="hidden" name="id_sanpham" value="' . $id_sanpham . '">
-                            <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
-                            <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
-                            <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            
-                        </form>
+
                     </div>
                 </div>';
             }
@@ -119,21 +149,13 @@ require_once "Web/Models/M_danhMuc.php";
                             <span class="text-danger fw-bold d-block">Giảm: ' . number_format($giamgia_sanpham, 0, ',', '.') . ' VND</span>
                         </div>
                         <!-- Thêm vào giỏ hàng -->
-                        <form action="index.php?act=addtocart" method="post" class="text-center mt-3">
-                            <input type="hidden" name="id_sanpham" value="' . $id_sanpham . '">
-                            <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
-                            <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
-                            <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            
-                        </form>
+
                     </div>
                 </div>';
             }
             ?>
         </div>
-        <div class="text-center mt-4">
-            <a class="btn btn-outline-primary" href="./html/iphone.html">Xem Thêm</a>
-        </div>
+
     </div>
 </section>
 
@@ -166,21 +188,13 @@ require_once "Web/Models/M_danhMuc.php";
                             <span class="text-success fw-bold d-block">' . number_format($gia_sanpham, 0, ',', '.') . ' VND</span>
                             <span class="text-danger fw-bold d-block">Giảm: ' . number_format($giamgia_sanpham, 0, ',', '.') . ' VND</span>
                         </div>
-                        <form action="index.php?act=addtocart" method="post" class="text-center mt-3">
-                            <input type="hidden" name="id_sanpham" value="' . $id_sanpham . '">
-                            <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
-                            <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
-                            <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            
-                        </form>
+
                     </div>
                 </div>';
             }
             ?>
         </div>
-        <div class="text-center mt-4">
-            <a class="btn btn-outline-primary" href="./html/xiaomi.html">Xem Thêm</a>
-        </div>
+
     </div>
 </section>
 
@@ -210,36 +224,31 @@ require_once "Web/Models/M_danhMuc.php";
                             <span class="text-success fw-bold d-block">' . number_format($gia_sanpham, 0, ',', '.') . ' VND</span>
                             <span class="text-danger fw-bold d-block">Giảm: ' . number_format($giamgia_sanpham, 0, ',', '.') . ' VND</span>
                         </div>
-                        <form action="index.php?act=addtocart" method="post" class="text-center mt-3">
-                            <input type="hidden" name="id_sanpham" value="' . $id_sanpham . '">
-                            <input type="hidden" name="ten_sanpham" value="' . $ten_sanpham . '">
-                            <input type="hidden" name="giamgia_sanpham" value="' . $giamgia_sanpham . '">
-                            <input type="hidden" name="quantity_sanpham" value="' . $quantity_sanpham . '">
-                            
-                        </form>
+               
                     </div>
                 </div>';
             }
             ?>
         </div>
-        <div class="text-center mt-4">
-            <a class="btn btn-outline-primary" href="./html/samsung.html">Xem Thêm</a>
-        </div>
+
     </div>
 </section>
 
 <!-- <Section class="customer"> -->
-<h1 class="customer--title">KHÁCH HÀNG CỦA MY PHONE</h1>
+<section class="phone">
+<div class="phone--container">
+<h1 class="phone--title text-center">KHÁCH HÀNG CỦA HD Plus</h1>
+<div class="row g-3 wow" data-wow-offset="100" data-wow-iteration="100">
 <div class="customer--container wow " data-wow-offset="100" data- wow-iteration="100">
     <div class="customer--list">
         <div class="customer--list__item">
             <div class="img">
-                <img src="./public/img/a.jpg" alt="">
+                <img src="./public/img/huy.jpg" alt="">
             </div>
             <div class="customer--text">
                 <h2>Đỗ Quang Huy</h2>
                 <b>Sinh Viên</b>
-                <span class="text-clamp">Hôm nay, Huy quyết định tới cửa hàng công nghệ uy tín - MyPhone, để tìm
+                <span class="text-clamp">Hôm nay, Huy quyết định tới cửa hàng công nghệ uy tín - HD Plus, để tìm
                     kiếm một sản phẩm
                     phù hợp với nhu cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới
                     công nghệ, Huy muốn sở hữu một chiếc điện thoại thông minh không chỉ để hỗ trợ việc học tập
@@ -253,7 +262,7 @@ require_once "Web/Models/M_danhMuc.php";
             <div class="customer--text">
                 <h2>Nguyễn Minh Thuận</h2>
                 <b>Sinh Viên</b>
-                <span class="text-clamp">Hôm nay, Thuận quyết định tới cửa hàng công nghệ uy tín - MyPhone, để
+                <span class="text-clamp">Hôm nay, Thuận quyết định tới cửa hàng công nghệ uy tín - HD Plus, để
                     tìm kiếm
                     một sản phẩm phù hợp với nhu
                     cầu của mình. Với sự năng động của một sinh viên và sự hiện đại của thế giới công nghệ,
@@ -270,7 +279,7 @@ require_once "Web/Models/M_danhMuc.php";
             <div class="customer--text">
                 <h2>Nguyễn Thị Ánh</h2>
                 <b>Sinh Viên</b>
-                <span class="text-clamp">Ánh đã quyết định ghé thăm cửa hàng công nghệ danh tiếng - MyPhone, để
+                <span class="text-clamp">Ánh đã quyết định ghé thăm cửa hàng công nghệ danh tiếng - HD Plus, để
                     tìm một
                     chiếc điện thoại phù hợp với
                     nhu cầu cá nhân. Với cuộc sống bận rộn của mình, Ánh cần một chiếc smartphone không chỉ hỗ
@@ -287,11 +296,15 @@ require_once "Web/Models/M_danhMuc.php";
             <div class="customer--text">
                 <h2>Nguyễn Thành Nam</h2>
                 <b>Nhà Đầu Tư</b>
-                <span class="text-clamp">Nam Là 1 Nhà đầu tư đi đầu ở Việt Nam , nay anh ấy đến MyPhone của
-                    chúng tôi để mua 10 chiếc điện thoại để anhcó thể xem biểu đồ dễ dàng hơn và phát hiện, một
+                <span class="text-clamp">Nam Là 1 Nhà đầu tư đi đầu ở Việt Nam , nay anh ấy đến HD Plus của
+                    chúng tôi để mua 10 chiếc điện thoại để anh có thể xem biểu đồ dễ dàng hơn và phát hiện, một
                     cách nhanh chóng hơn
                     .</span>
             </div>
         </div>
     </div>
 </div>
+</div>
+</div>
+</section>
+<?php  }?>

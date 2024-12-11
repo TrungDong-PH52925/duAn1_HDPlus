@@ -4,41 +4,42 @@ require_once './Web/Config/dbconnect.php';
 
 class Bill {
     // Thêm một hóa đơn mới vào bảng bill
-    public function insertBill($status_payment, $trangthai_bill, $id_user, $user_name, $user_address, $user_phone, $user_email, $id_cart, $id_sanpham, $ten_sanpham, $img_sanpham, $gia_hientai, $soluong, $total) {
-        // Kiểm tra giá trị của id_cart là số nguyên hợp lệ
-        // if (!is_numeric($id_cart)) {
-        //     echo "id_cart phải là số nguyên hợp lệ!";
-        //     echo "id_cart: " . $id_cart; // Kiểm tra giá trị id_cart
-
-        //     return;
-        // }
+    public function insertMultipleBills($status_payment,  $id_user, $user_name, $user_account, $user_address, $user_phone, $user_email, $products) {
+        // $products là một mảng, mỗi phần tử của mảng chứa thông tin của một sản phẩm
+        $sql = "INSERT INTO bill (status_payment,  id_user, user_name, user_account, user_address, user_phone, user_email, id_cart, id_sanpham, ten_sanpham, img_sanpham, mota_sanpham, gia_hientai, soluong, total) 
+                VALUES ";
     
-        // Nếu id_cart là số nguyên hợp lệ, tiếp tục thực hiện câu lệnh SQL
-        $sql = "INSERT INTO bill (status_payment, trangthai_bill, id_user, user_name, user_address, user_phone, user_email, id_cart, id_sanpham, ten_sanpham, img_sanpham, gia_hientai, soluong, total) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $placeholders = [];
+        $params = [];
     
-        // Tạo mảng tham số với các giá trị truyền vào
-        $params = [
-            $status_payment, 
-            $trangthai_bill, 
-            $id_user, 
-            $user_name, 
-            $user_address, 
-            $user_phone, 
-            $user_email, 
-            $id_cart,  // Đảm bảo giá trị này là số nguyên
-            $id_sanpham, 
-            $ten_sanpham, 
-            $img_sanpham, 
-            $gia_hientai,
-            $soluong, 
-            $total
-        ];
+        foreach ($products as $product) {
+            $placeholders[] = "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $params = array_merge($params, [
+                $status_payment,
+               
+                $id_user,
+                $user_name,
+                $user_account,
+                $user_address,
+                $user_phone,
+                $user_email,
+                $product['id_cart'],
+                $product['id_sanpham'],
+                $product['ten_sanpham'],
+                $product['img_sanpham'],
+                $product['mota_sanpham'],
+                $product['gia_hientai'],
+                $product['soluong'],
+                $product['total']
+            ]);
+        }
     
-        // Thực thi câu lệnh SQL với mảng tham số
+        $sql .= implode(", ", $placeholders);
+    
+        // Thực thi câu lệnh SQL với tất cả các tham số
         pdo_execute($sql, ...$params);
-        
     }
+    
     
     
     
@@ -47,7 +48,10 @@ class Bill {
         $sql = "SELECT * FROM bill";
         return pdo_query($sql);
     }
-
+    public function getBillUser($user_account) {
+        $sql = "SELECT * FROM bill WHERE user_account = '$user_account' ";
+        return pdo_query($sql);
+    }
     // Lấy chi tiết một hóa đơn dựa trên id_bill
     public function getBillById($id_bill) {
         $sql = "SELECT * FROM bill WHERE id_bill = ?";
@@ -65,15 +69,48 @@ class Bill {
         ];
     
         // Gọi phương thức pdo_execute với tham số đã sửa
-        pdo_execute($sql, $params);
+        pdo_executes($sql, $params);
     }
     
     
     
     // Xóa hóa đơn theo id
-    public function deleteBill($id_bill) {
-        $sql = "DELETE FROM bill WHERE id_bill = ?";
-        pdo_execute($sql, [$id_bill]);
+    public function deleteBill($id_cart, $trangthai_bill) {
+        // Câu lệnh SQL với tham số placeholder
+        $sql = "DELETE FROM bill WHERE id_cart = '$id_cart' AND trangthai_bill = '$trangthai_bill'";
+        
+       
+  
+        
+        // Gọi hàm pdo_executes
+        $result = pdo_execute($sql);
+        
+        // Kiểm tra kết quả
+        if ($result) {
+            echo "Xóa hóa đơn thành công.";
+        } else {
+            echo "Xóa hóa đơn thất bại.";
+        }
     }
+    
+    public function getBillStatusByCartId($id_cart) {
+        // Câu lệnh SQL để lấy trạng thái hóa đơn dựa trên id_cart
+        $sql = "SELECT trangthai_bill FROM bill WHERE id_cart = '$id_cart'";
+        
+       
+        
+        
+        // Gọi hàm pdo_query_one để lấy một bản ghi (giả sử bạn đã có hàm này)
+        $result = pdo_query_one($sql);
+
+        // Kiểm tra kết quả
+        if ($result) {
+            return $result['trangthai_bill']; // Trả về trạng thái hóa đơn
+        } else {
+            return null; // Trả về null nếu không tìm thấy
+        }
+    }
+    
+    
 }
 ?>

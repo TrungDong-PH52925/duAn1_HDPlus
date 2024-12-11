@@ -24,7 +24,21 @@ function pdo_get_connection(){
  * @param array $args mảng giá trị cung cấp cho các tham số của $sql
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_execute($sql, $params = []) {
+function pdo_execute($sql){
+    $sql_args = array_slice(func_get_args(), 1);
+    try{
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+    }   
+    catch(PDOException $e){
+        throw $e;
+    }
+    finally{
+        unset($conn);
+    }
+}
+function pdo_executes($sql, $params = []) {
     try {
         $conn = pdo_get_connection();  // Sử dụng hàm kết nối để tạo đối tượng PDO
         $stmt = $conn->prepare($sql);
@@ -40,6 +54,7 @@ function pdo_execute($sql, $params = []) {
         return false;
     }
 }
+
 
 
 /**

@@ -26,8 +26,16 @@ class C_Account
             $result = check_user($account_user, $pass_user);  // Hàm check_user trong M_Account
 
             if ($result && isset($result[0])) {  // Nếu có kết quả trả về từ cơ sở dữ liệu
-                $role = $result[0]['role'];
-
+                if($_SESSION['role']&& $_SESSION['username'] && $_SESSION['pass_user']){
+                    $role = $_SESSION['role'];
+                    $account_user = $_SESSION['username'];
+                    $pass_user = $_SESSION['pass_user'];
+                
+                }else{
+                    $role = $result[0]['role'];
+                    $account_user = $result[0]['username'];
+                    $pass_user = $result[0]['role'];
+                }
                 if ($role == 1) {  // Nếu là quản trị viên
                     $_SESSION['role'] = $role;
                     header('Location: index.php?act=admin');
@@ -142,10 +150,6 @@ class C_Account
 
     public function update_User()
     {
-        // var_dump($_POST['savett']);
-        // var_dump($_POST);
-        // var_dump($_FILES);
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['savett'])) {
             // Lấy dữ liệu từ form
             $role = $_POST['role'];
@@ -154,11 +158,13 @@ class C_Account
             $sdt_user = $_POST['sdt_user'];
             $gmail_user = $_POST['gmail_user'];
             $account_user = $_POST['account_user'];
+            $_SESSION['username'] =$account_user;
+           
             $pass_user = $_POST['pass_user'];
+            $_SESSION['pass_user'] =$pass_user;
+
             $address_user = $_POST['address_user'];
-
-
-
+    
             // Xử lý ảnh người dùng (nếu có)
             $img_user = null;
             if (isset($_FILES['img_user']) && $_FILES['img_user']['error'] == 0) {
@@ -172,28 +178,42 @@ class C_Account
                     exit;
                 }
             }
-
-            // if (check_duplicate_user($account_user, $gmail_user)) {
-            //     $_SESSION['error'] = "Tài khoản hoặc email đã tồn tại.";
-            //     header('Location: index.php?act=user');
-            //     exit;
-            // }
-
+    
             // Gọi hàm update_user để cập nhập thông tin người dùng vào cơ sở dữ liệu
-
-            $update =  update_user($id_user, $ten_user, $sdt_user, $gmail_user, $account_user, $pass_user, $address_user, $img_user, $role);
+            $update = update_user($id_user, $ten_user, $sdt_user, $gmail_user, $account_user, $pass_user, $address_user, $img_user, $role);
             if ($update) {
+           
+                // Lấy thông tin người dùng mới từ cơ sở dữ liệu
+                // var_dump($_SESSION['username']);exit;
+            //    unset($_SESSION);
+            
+                $new_user_info = get_user($account_user); // Hàm lấy thông tin người dùng theo ID
+                // $_SESSION = $new_user_info;
+                $_SESSION['username'] = $new_user_info['account_user'];
+        $_SESSION['pass_user'] = $new_user_info['pass_user'];
+        $_SESSION['ten_user'] = $new_user_info['ten_user'];
+        $_SESSION['sdt_user'] = $new_user_info['sdt_user'];
+        $_SESSION['gmail_user'] = $new_user_info['gmail_user'];
+        $_SESSION['address_user'] = $new_user_info['address_user'];
+        $_SESSION['img_user'] = $new_user_info['img_user'];
+        $_SESSION['role'] = $new_user_info['role'];
+               var_dump($_SESSION);
+                // if ($new_user_info) {
+                   
+                //     // Cập nhật session với thông tin mới
+                //     $_SESSION = $new_user_info;
+                //     var_dump($_SESSION) ; exit;
+                // }
+    
                 $_SESSION['success'] = "Cập nhập thành công!";
                 header('Location: index.php?act=user');
-                return $update;
                 exit;
             } else {
-                // error_log("Insert user failed for account: $account_user");
                 $_SESSION['error'] = "Có lỗi xảy ra. Vui lòng thử lại.";
                 header('Location: index.php?act=user');
-                return $update;
                 exit;
             }
         }
     }
+    
 }

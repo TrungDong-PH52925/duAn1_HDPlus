@@ -23,7 +23,7 @@ class CartModel
     }
 
     // Hàm thêm sản phẩm vào giỏ hàng
-    public function addToCartDatabase($id_cart, $id_user, $id_sanpham, $quantity, $ten_sanpham, $gia_hientai, $img_sanpham, $total)
+    public function addToCartDatabase($id_cart, $id_user, $id_sanpham, $quantity, $ten_sanpham, $gia_hientai, $img_sanpham,$mota_sanpham, $total)
     {
         // Chuyển đường dẫn ảnh tương đối thành tuyệt đối
         $base_url = "http://localhost/duAn1_HDPlus/";
@@ -38,14 +38,14 @@ class CartModel
         if ($existing_item) {
             // Cập nhật số lượng và tổng tiền nếu sản phẩm đã tồn tại
             $sql_update = "UPDATE cart_items 
-                           SET soluong = soluong + ?, total = total + ?, gia_hientai = ?, ten_sanpham = ?, img_sanpham = ? 
+                           SET soluong = soluong + ?, total = total + ?, gia_hientai = ?, ten_sanpham = ?, img_sanpham = ? ,mota_sanpham = ?
                            WHERE id_cart = ? AND id_sanpham = ?";
-            pdo_execute($sql_update, $quantity, $total, $gia_hientai, $ten_sanpham, $img_sanpham, $id_cart, $id_sanpham);
+            pdo_execute($sql_update, $quantity, $total, $gia_hientai, $ten_sanpham, $img_sanpham,$mota_sanpham, $id_cart, $id_sanpham);
         } else {
             // Thêm mới sản phẩm vào giỏ hàng
-            $sql_insert = "INSERT INTO cart_items (id_cart, id_sanpham, soluong, ten_sanpham, gia_hientai, img_sanpham, total) 
-                           VALUES (?, ?, ?, ?, ?, ?, ?)";
-            pdo_execute($sql_insert, $id_cart, $id_sanpham, $quantity, $ten_sanpham, $gia_hientai, $img_sanpham, $total);
+            $sql_insert = "INSERT INTO cart_items (id_cart, id_sanpham, soluong, ten_sanpham, gia_hientai, img_sanpham,mota_sanpham, total) 
+                           VALUES (?, ?, ?, ?, ?, ?, ? ,?)";
+            pdo_execute($sql_insert, $id_cart, $id_sanpham, $quantity, $ten_sanpham, $gia_hientai, $img_sanpham,$mota_sanpham, $total);
         }
     }
     public function createCartIfNotExists($id_cart, $id_user)

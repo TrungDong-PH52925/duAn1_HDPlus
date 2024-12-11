@@ -152,9 +152,15 @@ if (isset($_GET['act']) && ($_GET['act']) != "") {
         case 'listbill':
             $C_Bill -> listBills();
             break;
+        case 'lsubill' :
+            $C_Bill -> listUserBill();
+            break;
         case 'updatebill':
            $C_Bill->updateStatus();
-
+            break;
+            case 'updatebilluser':
+                $C_Bill->deleteBill();
+                 break;
             // Trang chi tiết sản phẩm
         case 'chitietsp':
             $C_sanpham->chiTietSanPham();

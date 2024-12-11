@@ -22,7 +22,7 @@
                         <div class="img"><img src="./public/img/home/utilities3.png" alt=""></div>
                         <div class="box--text">
                             <span>Hotline hỗ trợ</span>
-                            <b>1900.2091</b>
+                            <b>0368.8368</b>
                         </div>
                     </div>
                     <div class=" col-6 col-md-3 box">
@@ -36,15 +36,7 @@
             </div>
         </section>
     </Section>
-    <!-- end customer -->
-    <!-- <div class="contact">
-        <a href="https://www.facebook.com/profile.php?id=61567235125171" title="facebook"><i
-                class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.youtube.com/" title="youtube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-solid fa-envelope" title="Email"></i></a>
-        <a href="#"><i class="fa-brands fa-telegram" title="Telegram"></i></a>
-    </div> -->
-    <!-- END ICON SUBPORT -->
+
     <a href="#" class="back-top">
         <i class="fa-solid fa-angle-up"></i>
     </a>
@@ -132,7 +124,7 @@
             </div>
         </div>
         <div class="Footer--Address">
-            <span>&copy; Copyright MyPhone 2024 </span>
+            <span>&copy; Copyright HD Plus 2024 </span>
         </div>
     </footer>
 
@@ -146,8 +138,8 @@
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
 <script src="./public/js/wow.min.js"></script>
-<script>
+<!-- <script>
     new WOW().init();
-</script>
+</script> -->
 
 </html>

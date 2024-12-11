@@ -56,4 +56,11 @@ class SanPham
         $sp=pdo_query($sql);
         return $sp;
     }
+
+    public function search($keyword){
+        $sql ="SELECT * FROM sanpham WHERE ten_sanpham LIKE ?";
+        $keyword = "%" .$keyword. "%";
+        $result= pdo_query($sql,[$keyword]);
+        return $result;
+    } 
 }

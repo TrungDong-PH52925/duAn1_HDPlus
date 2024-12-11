@@ -6,11 +6,9 @@ require_once "./Web/Models/M_danhMuc.php";
         $this->dm = new danhMuc();
     }
     public function addDanhMuc(){
-        // echo 123;
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['themdm'])) {
-        // if(isset($_POST['themdm']) && ($_POST['themdm'])){
-        // echo 123;
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['themdm'])) {
+   
             $ten_danhmuc = $_POST['ten_danhmuc'];
             $img_danhmuc = $_FILES['img_danhmuc']['name'];
             $target_dir = "./public/upload/";
@@ -46,11 +44,11 @@ require_once "./Web/Models/M_danhMuc.php";
 
     }
     public function editDanhMuc(){
-        // var_dump($_POST);
+
         
 
         if(isset($_POST['editdm']) && ($_POST['editdm'])){
-        // var_dump($_POST);
+
 
             $id_danhmuc = $_POST['id_danhmuc'];
             $ten_danhmuc = $_POST['ten_danhmuc'];
@@ -66,12 +64,12 @@ require_once "./Web/Models/M_danhMuc.php";
           $this-> dm -> update_danhMuc($id_danhmuc,$ten_danhmuc,$img_danhmuc);
        
             
-            // $alert = "Cập nhập thành công !";
+         
         }
-        // $this-> dm -> getAll_danhMuc();
+      
         include './Web/Views/Admin/danhmuc/list.php';
 
-        // echo "Cập nhập thành công !";
+     
     }
 
     public function deleteDanhMuc(){

@@ -13,8 +13,8 @@ function check_user($account_user, $pass_user) {
 function get_user($account_user) {
     $sql = "SELECT * FROM user WHERE account_user = ?";
     return pdo_query_one($sql, $account_user);  // Gọi hàm pdo_query_one với tài khoản người dùng
-}
-
+}   
+    
 
 
 

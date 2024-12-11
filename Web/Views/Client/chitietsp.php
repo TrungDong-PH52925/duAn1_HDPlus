@@ -169,47 +169,15 @@
                     <input type="hidden" name="id_sanpham" value="<?= $id_sanpham ?>">
                     <input type="hidden" name="total" id="total-price" value="<?= number_format($gia_sanpham - $giamgia_sanpham, 0, ',', '.') ?>">
                     <input type="hidden" name="gia_sanpham" value="<?= $gia_sanpham ?>">
+                <input type="hidden" name="mota_sanpham" value="<?= nl2br($mota_sanpham) ?>">
+
                 </form>
             </div>
             <div class="Product-des mt-5">
                 <h3>Mô tả sản phẩm:</h3>
                 <p><?= nl2br($mota_sanpham) ?></p>
+
             </div>
-            <!-- <div class="comments">
-        <?php
-        $listBinhLuan = $listBinhLuan ?? [];
-        foreach ($listBinhLuan as $comment): ?>
-        <div class="comment">
-            <strong><?= htmlspecialchars($comment['username'] ?? 'Khách') ?></strong>
-            <p><?= htmlspecialchars($comment['noidung_binhluan']) ?></p>
-            <small><?= htmlspecialchars($comment['ngay_binhluan']) ?></small>
-            </div>
-            <?php endforeach; ?>
-            </div> -->
-
-            <!-- Form bình luận -->
-            <div class="comment-section mt-5">
-                <h3 class="mb-3">Để lại bình luận của bạn:</h3>
-                <form action="http://localhost/duAn1_HDPlus/index.php?act=add_edit_binhluan" method="POST" class="needs-validation" novalidate style="border: 1px solid; padding:20px; border-radius:10px;">
-                    <!-- <div class="mb-3">
-            <label for="commentName" class="form-label"><i class="fas fa-user"></i> Tên của bạn:</label>
-            <input type="text" class="form-control" id="commentName" name="id_user" placeholder="Nhập tên của bạn" required>
-            <div class="invalid-feedback">Vui lòng nhập tên của bạn.</div>
-            </div> -->
-                    <div class="mb-3">
-                        <label for="commentContent" class="form-label"><i class="fas fa-comment"></i> Nội dung bình luận:</label>
-                        <textarea class="form-control" id="commentContent" name="noidung_binhluan" rows="4" style="width:100%;" placeholder="Nhập nội dung bình luận" required></textarea>
-                        <div class="invalid-feedback">Nội dung bình luận không được để trống.</div>
-                    </div>
-                    <input type="hidden" name="id_binhluan" value="<?= htmlspecialchars($id_binhluan) ?>">
-                    <input type="hidden" name="id_sanpham" value="<?= htmlspecialchars($id_sanpham) ?>">
-                    <input type="hidden" name="id_user" value="<?= htmlspecialchars($id_user) ?>">
-                    <button type="submit" class="btn btn-primary" value="gui" name="gui"><i class="fas fa-paper-plane"></i> Gửi bình luận</button>
-                </form>
-            </div>
-
-
-
 
         </div>
 
@@ -266,18 +234,7 @@
             </div>
         </div>
     </section>
-    <!-- end customer -->
-    <!-- <div class="contact">
-        <a href="https://www.facebook.com/profile.php?id=61567235125171" title="facebook"><i
-                class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.youtube.com/" title="youtube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-solid fa-envelope" title="Email"></i></a>
-        <a href="#"><i class="fa-brands fa-telegram" title="Telegram"></i></a>
-    </div> -->
-    <!-- END ICON SUBPORT -->
-    <!-- <a href="#" class="back-top">
-        <i class="fa-solid fa-angle-up"></i>
-    </a> -->
+
     <footer class="footer--page wow " data-wow-offset="100" data- wow-iteration="100">
         <div class="footer--page__container">
             <div class="row">

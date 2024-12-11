@@ -24,7 +24,12 @@
 
     <!-- add css  -->
     <link rel="stylesheet" href="./public/css/index.css">
-    <title>Myphone</title>
+    <title>HD Plus</title>
+    <style>
+        .user{
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,15 +40,10 @@
         <div class="nav--infomation ">
             <ul class="nav--infomation__top">
                 <li class="items"><a href="http://localhost/duAn1_HDPlus/index.php">Trang chủ</a></li>
-                <li class="items"><a href="./html/introduce.html">Giới thiệu</a></li>
-                <li class="items"><a href="./html/watched.html">Sản phẩm đã xem</a></li>
-                <li class="items"><a href="./html/guaranteed.html">Trung tâm bảo hành</a></li>
-                <!-- <li class="items"><a href="#0">Hệ thông 128 siêu thị</a></li> -->
-                <li class="items"><a href="./html/recruitment.html">Tuyển dụng</a></li>
-                <li class="items"><a href="./html/tracuu.html">Tra cứu</a></li>
+               
                 <?php
                 if (isset($_SESSION['username']) && ($_SESSION['username'] != "")) {
-                    echo '<li class="items"><a href="index.php?act=user">' . $_SESSION['username'] . '</a></li>';
+                    echo '<i class="user fa-solid fa-user"></i><li class="items"><a href="index.php?act=user">' . $_SESSION['username'] . '</a></li>';
                 } else {
                 ?>
                     <li class="items"><a href="../../../duAn1_HDPlus/Web/Views/Login/login.php">Đăng Nhâp</a></li>
@@ -60,10 +60,24 @@
                 <img src="./public/img/logo.jpg" alt="logo">
             </div>
             <div class="menu--search">
-                <input type="text" placeholder="Search...">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <form action="" method="get" class="d-flex align-items-center">
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search..."
+                        style="width: 550px; height: 60px;margin-right:0;">
+                    <button
+                    
+                        type="submit"
+                        class="btn p-0 border-0 bg-transparent  align-items-center justify-content-center"
+                        style="height: 40px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
             </div>
-            <a class="menu--check__product " href="./html/checkoder.html" style="text-decoration: none; color: black;">
+
+            <a class="menu--check__product " href="http://localhost/duAn1_HDPlus/index.php?act=lsubill" style="text-decoration: none; color: black;">
                 <i class="fa-solid fa-car"></i>
                 Kiểm tra đơn hàng
             </a>
@@ -74,7 +88,7 @@
                     Kiểm tra giỏ hàng
                 </a>
             </div>
-
+           
             <label for="nav--list__check">
                 <i class="fa-solid fa-bars"></i>
             </label>

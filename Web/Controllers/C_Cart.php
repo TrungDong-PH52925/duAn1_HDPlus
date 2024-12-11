@@ -25,7 +25,7 @@ class CartController
         $id_cart = $_SESSION['id_cart'] ?? uniqid(); // Tạo id_cart nếu chưa có
        
         $_SESSION['id_cart'] = $id_cart; // Lưu lại vào session
-
+        
         $id_user = $_SESSION['id_user']; // Lấy id_user từ session
 
         // Logic lấy thông tin sản phẩm từ form
@@ -34,10 +34,14 @@ class CartController
 
         $ten_sanpham = $_POST['ten_sanpham'];
         $img_sanpham = $_POST['img_sanpham'];
+        $mota_sanpham = $_POST['mota_sanpham'];
         $gia_hientai = isset($_POST['gia_hientai']) ? (float)$_POST['gia_hientai'] : 0;
+        $id_cart = $_SESSION['id_cart']; // Lưu lại vào session
+
         $_SESSION['gia_hientai'] = $gia_hientai;
 
         $id_sanpham = isset($_POST['id_sanpham']) ? (int)$_POST['id_sanpham'] : 0;
+       
         $total = $gia_hientai * $soluong ;
         $_SESSION['total'] = $total;
 
@@ -45,11 +49,11 @@ class CartController
         $this->cartModel->createCartIfNotExists($id_cart, $id_user);
 
         // Gọi hàm thêm sản phẩm vào cơ sở dữ liệu
-        $this->cartModel->addToCartDatabase($id_cart, $id_user, $id_sanpham, $soluong, $ten_sanpham, $gia_hientai, $img_sanpham, $total);
+        $this->cartModel->addToCartDatabase($id_cart, $id_user, $id_sanpham, $soluong, $ten_sanpham, $gia_hientai, $img_sanpham,$mota_sanpham, $total);
 
         // Chuyển hướng về trang giỏ hàng
         header("Location: http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php");
-        exit(); // Thêm exit() sau header để ngăn chặn các mã tiếp theo thực thi
+        // exit(); // Thêm exit() sau header để ngăn chặn các mã tiếp theo thực thi
     }
 
 
@@ -82,35 +86,46 @@ class CartController
 
 
 
-    public function removeFromCart()
-    {
-        // Kiểm tra xem người dùng đã đăng nhập
-        if (!isset($_SESSION['id_user'])) {
-            echo "<script>alert('Vui lòng đăng nhập!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Login/login.php';</script>";
-            exit();
-        }
+public function removeFromCart()
+{
+    // Kiểm tra xem người dùng đã đăng nhập
+    if (!isset($_SESSION['id_user'])) {
+        echo "<script>alert('Vui lòng đăng nhập!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Login/login.php';</script>";
+        exit();
+    }
 
-        $id_cart = $_SESSION['id_cart'] ?? null; // Lấy id_cart từ session
+    $id_cart = $_SESSION['id_cart'] ?? null; // Lấy id_cart từ session
+    
+    // Lấy ID sản phẩm từ yêu cầu GET
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+        $id_sanpham = (int)$_GET['id'];
 
-        // Lấy ID sản phẩm từ yêu cầu GET
-        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-            $id_sanpham = (int)$_GET['id'];
-            if ($id_sanpham > 0 && $id_cart) {
-                // Gọi hàm xóa sản phẩm khỏi giỏ hàng
-                $this->cartModel->removeFromCartDatabase($id_cart, $id_sanpham);
-            } else {
-                echo "<script>alert('ID sản phẩm không hợp lệ hoặc giỏ hàng không tồn tại!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php';</script>";
-                exit();
+        if ($id_sanpham > 0 && $id_cart) {
+            // Xóa sản phẩm khỏi giỏ hàng
+            $this->cartModel->removeFromCartDatabase($id_cart, $id_sanpham);
+
+            // Kiểm tra nếu không còn sản phẩm nào trong giỏ hàng
+            $remainingItems = $this->cartModel->getCartByCartId($id_cart);
+            if (empty($remainingItems)) {
+                // Xóa giỏ hàng và id_cart khỏi session
+                $this->cartModel->deleteCart($id_cart);
+                unset($_SESSION['id_cart']);
             }
 
-            // Chuyển hướng về lại trang giỏ hàng
-            header("Location: http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php");
-            exit();
         } else {
-            echo "<script>alert('ID sản phẩm không hợp lệ!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php';</script>";
+            echo "<script>alert('ID sản phẩm không hợp lệ hoặc giỏ hàng không tồn tại!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php';</script>";
             exit();
         }
+        
+        // Chuyển hướng về lại trang giỏ hàng
+        header("Location: http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php");
+        exit();
+    } else {
+        echo "<script>alert('ID sản phẩm không hợp lệ!'); window.location.href = 'http://localhost/duAn1_HDPlus/Web/Views/Client/V_Cart.php';</script>";
+        exit();
     }
+}
+
 
     // Các phương thức khác...
     public function removeCartItem()

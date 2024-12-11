@@ -14,12 +14,13 @@ $id_user = $_SESSION['id_user'];
 // Lấy hoặc khởi tạo id_cart
 if (!isset($_SESSION['id_cart'])) {
     $_SESSION['id_cart'] = uniqid(); // Tạo id_cart mới
-    print_r($id_cart);
+    // print_r($id_cart);
 }
 $id_cart = $_SESSION['id_cart'];
- print_r($id_cart);
+
 // Lấy danh sách sản phẩm từ giỏ hàng
 $cart_items = $cartModel->getCartByCartId($id_cart);
+// print_r($cart_items);
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +48,8 @@ $cart_items = $cartModel->getCartByCartId($id_cart);
                 <li class="items"><a href="./html/guaranteed.html">Trung tâm bảo hành</a></li>
                 <li class="items"><a href="./html/recruitment.html">Tuyển dụng</a></li>
                 <li class="items"><a href="./html/tracuu.html">Tra cứu</a></li>
-                <?php if (isset($_SESSION['username']) && !empty($_SESSION['username'])): ?>
-                    <li class="items"><a href="index.php?act=userinfo"><?= htmlspecialchars($_SESSION['username']); ?></a></li>
+                <?php if (isset($_SESSION['username']) &&   ($_SESSION['username'])): ?>
+                    <li class="items"><a href="../../../index.php?act=user"><?= htmlspecialchars($_SESSION['username']); ?></a></li>
                     <li class="items"><a href="../../../index.php?act=logout">Đăng xuất <i class="fa-solid fa-right-to-bracket"></i></a></li>
                 <?php else: ?>
                     <li class="items"><a href="http://localhost/duAn1_HDPlus/Web/Views/Login/login.php">Đăng nhập</a></li>
@@ -102,11 +103,11 @@ $cart_items = $cartModel->getCartByCartId($id_cart);
 <?php else : ?>
     <button class="btn btn-secondary w-100 mt-3" disabled>Giỏ hàng trống</button>
 <?php endif; ?>
+<a href="http://localhost/duAn1_HDPlus/index.php" class="btn btn-primary w-100 mt-3">Tiếp tục mua sắm</a>
 
     </div>
-    <div class="mt-3 mb-4">
-    <a href="http://localhost/duAn1_HDPlus/index.php" class="btn btn-outline-primary">Quay lại trang sản phẩm</a>
-</div>
+   
+
     <footer class="footer--page wow " data-wow-offset="100" data- wow-iteration="100">
         <div class="footer--page__container">
             <div class="row">
